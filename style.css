@@ -67,7 +67,7 @@ body{
 .years-nav{ flex:1; overflow-y:visible; }
 .year-group{ margin-bottom:6px; }
 .year-head{
-  all:unset; cursor:pointer; width:100%;
+  all:unset; box-sizing:border-box; cursor:pointer; width:100%;
   display:flex; align-items:center; justify-content:space-between;
   padding:9px 12px; border-radius:10px; font-size:13px; font-weight:600;
   color: var(--text);
@@ -339,7 +339,7 @@ body{
 }
 .profile-socials a:hover{ filter:brightness(1.15); }
 .logout-btn{
-  all:unset; cursor:pointer; margin-top:18px; text-align:center; display:block; width:100%;
+  all:unset; box-sizing:border-box; cursor:pointer; margin-top:18px; text-align:center; display:block; width:100%;
   font-size:12.5px; font-weight:600; color: #FF6B6B; padding: 10px 14px; border-radius:10px;
   border: 1px solid rgba(255,107,107,0.3); background: rgba(255,107,107,0.08);
 }
