@@ -64,7 +64,7 @@ body{
 .nav-item.active{ background: var(--accent-soft); color: var(--accent); }
 .nav-ico{ font-size:14px; width:16px; text-align:center; }
 
-.years-nav{ flex:1; overflow-y:auto; }
+.years-nav{ flex:1; overflow-y:visible; }
 .year-group{ margin-bottom:6px; }
 .year-head{
   all:unset; cursor:pointer; width:100%;

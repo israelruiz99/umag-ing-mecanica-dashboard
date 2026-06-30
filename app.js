@@ -336,23 +336,21 @@ document.getElementById("passMinInput").addEventListener("input", e => {
 
 document.getElementById("evalAdd").addEventListener("click", () => {
   if(!activeSubjectId) return;
-  const nameInput = document.getElementById("evalName");
   const scoreInput = document.getElementById("evalScore");
   const weightInput = document.getElementById("evalWeight");
-  const name = nameInput.value.trim();
   const score = parseFloat(scoreInput.value);
   const weight = parseFloat(weightInput.value) || 0;
 
-  if(!name || isNaN(score)) return;
+  if(isNaN(score)) return;
 
   if(!grades[activeSubjectId]) grades[activeSubjectId] = [];
+  const name = `Prueba ${grades[activeSubjectId].length + 1}`;
   grades[activeSubjectId].push({ name, score, weight });
   saveGrades();
 
-  nameInput.value = "";
   scoreInput.value = "";
   weightInput.value = "";
-  nameInput.focus();
+  scoreInput.focus();
 
   renderGradeList();
   renderOverview(document.getElementById("searchInput").value);
