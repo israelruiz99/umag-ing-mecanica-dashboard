@@ -370,6 +370,8 @@ body{
 
   .main{ padding: 16px 14px 50px; }
   .topbar{ flex-wrap: wrap; gap:10px; }
+  .topbar-right{ flex-shrink:0; }
+  .chip{ font-size:10.5px; padding:7px 10px; white-space:nowrap; }
   .search{ max-width:none; order:3; flex-basis:100%; }
   .view-head{ flex-direction:column; align-items:flex-start; }
   .cards-grid{ grid-template-columns: 1fr; }

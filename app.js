@@ -376,6 +376,8 @@ const sidebarOverlayEl = document.getElementById("sidebarOverlay");
 function openSidebar(){
   sidebarEl.classList.add("open");
   sidebarOverlayEl.classList.add("show");
+  // muestra de inmediato toda la barra de vista y todos los años expandidos
+  document.querySelectorAll(".year-group").forEach(g => g.classList.add("open"));
 }
 function closeSidebar(){
   sidebarEl.classList.remove("open");
