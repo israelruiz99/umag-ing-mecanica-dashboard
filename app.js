@@ -363,13 +363,53 @@ function renderProfileView(){
 
   authBox.style.display = "none";
   profileBox.style.display = "";
-  document.getElementById("profileAvatar").textContent = (user.name || user.email)[0].toUpperCase();
+
+  const avatarEl = document.getElementById("profileAvatar");
+  avatarEl.innerHTML = user.photo
+    ? `<img src="${user.photo}" alt="Foto de perfil">`
+    : (user.name || user.email)[0].toUpperCase();
+
   document.getElementById("profileName").textContent = user.name || "Sin nombre";
   document.getElementById("profileEmail").textContent = user.email;
   document.getElementById("profileNameInput").value = user.name || "";
+  document.getElementById("profileBirthdateInput").value = user.birthdate || "";
   document.getElementById("profileCareerInput").value = user.career || "Ingeniería en Mecánica — UMAG";
   document.getElementById("profileYearInput").value = user.year || 1;
+  document.getElementById("profileInstagramInput").value = (user.socials && user.socials.instagram) || "";
+  document.getElementById("profileTiktokInput").value = (user.socials && user.socials.tiktok) || "";
+  document.getElementById("profileLinkedinInput").value = (user.socials && user.socials.linkedin) || "";
+
+  const socialsEl = document.getElementById("profileSocials");
+  const socialLinks = [
+    { key: "instagram", label: "Instagram", base: "https://instagram.com/" },
+    { key: "tiktok", label: "TikTok", base: "https://tiktok.com/@" },
+    { key: "linkedin", label: "LinkedIn", base: "" },
+  ];
+  socialsEl.innerHTML = socialLinks
+    .filter(s => user.socials && user.socials[s.key])
+    .map(s => {
+      let val = user.socials[s.key].trim();
+      let href = val.startsWith("http") ? val : s.base + val.replace(/^@/, "");
+      return `<a href="${href}" target="_blank" rel="noopener">${s.label} ↗</a>`;
+    }).join("");
 }
+
+function toDataURL(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+document.getElementById("profilePhotoInput").addEventListener("change", async e => {
+  const file = e.target.files[0];
+  if(!file) return;
+  const dataUrl = await toDataURL(file);
+  updateProfile({ photo: dataUrl });
+  renderProfileView();
+});
 
 document.querySelectorAll(".auth-tab").forEach(tab => {
   tab.addEventListener("click", () => {
@@ -412,8 +452,14 @@ document.getElementById("profileForm").addEventListener("submit", e => {
   e.preventDefault();
   updateProfile({
     name: document.getElementById("profileNameInput").value.trim(),
+    birthdate: document.getElementById("profileBirthdateInput").value,
     career: document.getElementById("profileCareerInput").value.trim(),
     year: parseInt(document.getElementById("profileYearInput").value, 10),
+    socials: {
+      instagram: document.getElementById("profileInstagramInput").value.trim(),
+      tiktok: document.getElementById("profileTiktokInput").value.trim(),
+      linkedin: document.getElementById("profileLinkedinInput").value.trim(),
+    },
   });
   renderProfileView();
   const savedEl = document.getElementById("profileSaved");
