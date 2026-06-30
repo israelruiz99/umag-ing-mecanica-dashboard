@@ -157,22 +157,44 @@ function renderOverview(filterText = ""){
 }
 
 // ===== Render: Grades view =====
+function gradeCardHTML(s){
+  const avg = subjectAvg(s.id);
+  const count = (grades[s.id] || []).length;
+  return `
+    <div class="grade-card" data-id="${s.id}">
+      <h4>${s.name}</h4>
+      <div class="gc-meta">Año ${s.year} · Semestre ${s.semester}</div>
+      <div class="gc-avg ${avg === null ? 'empty' : ''}">${avg !== null ? avg.toFixed(1) : 'Sin notas'}</div>
+      <div class="gc-count">${count} evaluación${count === 1 ? '' : 'es'} registrada${count === 1 ? '' : 's'}</div>
+    </div>
+  `;
+}
+
 function renderGradesView(){
-  const grid = document.getElementById("gradesGrid");
-  grid.innerHTML = SUBJECTS.map(s => {
-    const avg = subjectAvg(s.id);
-    const count = (grades[s.id] || []).length;
-    return `
-      <div class="grade-card" data-id="${s.id}">
-        <h4>${s.name}</h4>
-        <div class="gc-meta">Año ${s.year} · Semestre ${s.semester}</div>
-        <div class="gc-avg ${avg === null ? 'empty' : ''}">${avg !== null ? avg.toFixed(1) : 'Sin notas'}</div>
-        <div class="gc-count">${count} evaluación${count === 1 ? '' : 'es'} registrada${count === 1 ? '' : 's'}</div>
+  const wrap = document.getElementById("gradesWrap");
+  wrap.innerHTML = "";
+
+  bySemester().forEach(block => {
+    const progress = semesterProgress(block.items);
+    const section = document.createElement("div");
+    section.className = "semester-block";
+    section.innerHTML = `
+      <div class="semester-title">
+        AÑO ${block.year} · SEMESTRE ${block.semester}
+        <span class="badge">${block.items.length} ramos</span>
+        <span class="semester-progress">
+          <span class="bar"><div class="bar-fill" style="width:${Math.min(100, progress)}%"></div></span>
+          <span class="sp-label">${progress > 0 ? progress.toFixed(0) + '%' : '—'}</span>
+        </span>
+      </div>
+      <div class="grades-grid">
+        ${block.items.map(gradeCardHTML).join("")}
       </div>
     `;
-  }).join("");
+    wrap.appendChild(section);
+  });
 
-  grid.querySelectorAll(".grade-card").forEach(card => {
+  wrap.querySelectorAll(".grade-card").forEach(card => {
     card.addEventListener("click", () => openPanel(card.dataset.id, "grades"));
   });
 }
@@ -180,7 +202,6 @@ function renderGradesView(){
 function refreshGlobalAvg(){
   const g = globalAvg();
   document.getElementById("globalAvg").textContent = g !== null ? g.toFixed(1) : "—";
-  document.getElementById("globalAvgBar").style.width = g !== null ? `${Math.min(100, (g/100)*100)}%` : "0%";
 }
 
 // ===== Panel =====
