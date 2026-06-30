@@ -13,7 +13,7 @@
 <div class="app">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="brand">
       <div class="brand-mark">UM</div>
       <div class="brand-text">
@@ -54,6 +54,9 @@
   <main class="main">
 
     <header class="topbar">
+      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
       <div class="search">
         <span class="search-ico">⌕</span>
         <input id="searchInput" type="text" placeholder="Buscar ramo… ej: Resistencia, Termodinámica">
@@ -175,6 +178,8 @@
 
   </main>
 </div>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <!-- DETAIL PANEL (slide-over) -->
 <div class="overlay" id="overlay"></div>

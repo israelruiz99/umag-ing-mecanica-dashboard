@@ -363,10 +363,26 @@ function switchView(view){
   document.querySelectorAll(".nav-item[data-view]").forEach(b => b.classList.toggle("active", b.dataset.view === view));
   document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === `view-${view}`));
   if(view === "profile") renderProfileView();
+  closeSidebar();
 }
 document.querySelectorAll(".nav-item[data-view]").forEach(b => {
   b.addEventListener("click", () => switchView(b.dataset.view));
 });
+
+// ===== Mobile sidebar drawer =====
+const sidebarEl = document.getElementById("sidebar");
+const sidebarOverlayEl = document.getElementById("sidebarOverlay");
+
+function openSidebar(){
+  sidebarEl.classList.add("open");
+  sidebarOverlayEl.classList.add("show");
+}
+function closeSidebar(){
+  sidebarEl.classList.remove("open");
+  sidebarOverlayEl.classList.remove("show");
+}
+document.getElementById("hamburgerBtn").addEventListener("click", openSidebar);
+sidebarOverlayEl.addEventListener("click", closeSidebar);
 
 // ===== Profile / Auth =====
 function renderProfileView(){
