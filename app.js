@@ -83,7 +83,7 @@ function renderYearsNav(){
     const group = document.createElement("div");
     group.className = "year-group";
     group.innerHTML = `
-      <button class="year-head">AÑO ${y.year} <span class="chev">›</span></button>
+      <button class="year-head">AÑO ${y.year}</button>
       <div class="sem-list">
         ${y.semesters.map(s => `<button class="sem-link" data-target="sem-${y.year}-${s}">Semestre ${s}</button>`).join("")}
       </div>
