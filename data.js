@@ -27,6 +27,47 @@ const SUBJECTS = [
       "Sistemas de ecuaciones lineales (2x2 y 3x3)",
       "Geometría analítica básica: recta y circunferencia",
     ],
+    deepDive: [
+      {
+        title: "Funciones",
+        points: [
+          "Dominio = valores de x permitidos (cuidado con denominadores =0 y raíces de índice par negativas).",
+          "Una función es inyectiva si pasa la prueba de la recta horizontal; solo así tiene inversa directa.",
+          "Composición (f∘g)(x) = f(g(x)): siempre evalúa primero la función interior.",
+          "Función exponencial f(x)=a^x crece/decae según a>1 o 0<a<1; su inversa es el logaritmo.",
+        ],
+      },
+      {
+        title: "Trigonometría",
+        points: [
+          "Círculo unitario: sen²θ + cos²θ = 1 es la identidad madre, de ella derivan las demás.",
+          "tan θ = sen θ / cos θ; cuidado con los valores donde cos θ = 0 (asíntotas).",
+          "Ángulos notables (0°, 30°, 45°, 60°, 90°) deben saberse de memoria, sin calculadora.",
+          "Ley del seno y coseno se usan para triángulos no rectángulos (útil en Mecánica General después).",
+        ],
+      },
+      {
+        title: "Factorización y ecuaciones",
+        points: [
+          "Casos de factorización: factor común, diferencia de cuadrados, trinomio cuadrado perfecto, suma/diferencia de cubos.",
+          "Fórmula general para cuadráticas: x = (-b ± √(b²-4ac)) / 2a; el discriminante define el número de soluciones reales.",
+          "Sistemas de ecuaciones: método de sustitución, igualación, reducción y matricial (Gauss básico).",
+        ],
+      },
+    ],
+    formulas: [
+      "Discriminante: Δ = b² − 4ac",
+      "Distancia entre dos puntos: d = √[(x₂−x₁)² + (y₂−y₁)²]",
+      "Ecuación de la recta: y = mx + n, con m = (y₂−y₁)/(x₂−x₁)",
+      "Identidad pitagórica: sen²θ + cos²θ = 1",
+      "Logaritmo: log_a(x) = y ⇔ a^y = x",
+    ],
+    examFocus: [
+      "Resolver inecuaciones con valor absoluto y expresar la solución en notación de intervalo.",
+      "Encontrar dominio y recorrido de funciones racionales y con raíces.",
+      "Factorizar polinomios de grado 3 o 4 combinando varios casos.",
+      "Resolver ecuaciones trigonométricas en un intervalo dado [0, 2π].",
+    ],
     tips: [
       "Domina la factorización antes de avanzar: es la base de cálculo I.",
       "Practica gráficos de funciones a mano para entender comportamiento, no solo álgebra.",
@@ -44,9 +85,34 @@ const SUBJECTS = [
       "Estructuras de datos básicas (arreglos)",
       "Resolución de problemas numéricos simples por algoritmo",
     ],
+    deepDive: [
+      {
+        title: "Lógica de programación",
+        points: [
+          "Variable = espacio de memoria con nombre; tipo de dato define qué puede guardar (entero, real, texto, booleano).",
+          "Condicional if/else: evalúa una expresión booleana y bifurca el flujo del programa.",
+          "Ciclo for: número conocido de repeticiones. Ciclo while: se repite mientras una condición sea verdadera.",
+          "Diagrama de flujo: óvalo = inicio/fin, rombo = decisión, rectángulo = proceso, paralelogramo = entrada/salida.",
+        ],
+      },
+      {
+        title: "Excel para ingeniería",
+        points: [
+          "Referencias relativas vs absolutas ($A$1) al copiar fórmulas.",
+          "Funciones clave: SI(), BUSCARV/BUSCARX, SUMAR.SI, promedio, gráficos de dispersión para datos experimentales.",
+          "Tablas dinámicas para resumir datos de laboratorio o mantenimiento.",
+        ],
+      },
+    ],
+    examFocus: [
+      "Escribir pseudocódigo o diagrama de flujo para un problema simple (ej. promedio de notas, máximo de una lista).",
+      "Identificar el resultado de un programa corto con ciclos anidados (trace de ejecución).",
+      "Resolver un caso práctico en Excel con fórmulas condicionales.",
+    ],
     tips: [
       "Practica en el computador, no solo leas teoría: la lógica se aprende programando.",
       "Aprende atajos y fórmulas de Excel, se usan en casi todos los ramos posteriores.",
+      "Cuando un programa falle, traza el código línea a línea con valores concretos antes de asumir que 'no funciona'.",
     ],
   },
   {
@@ -60,9 +126,48 @@ const SUBJECTS = [
       "Termoquímica básica",
       "Oxidación-reducción y corrosión (clave para mecánica)",
     ],
+    deepDive: [
+      {
+        title: "Estructura y enlace",
+        points: [
+          "Número atómico = protones; número másico = protones + neutrones; isótopos varían en neutrones.",
+          "Enlace metálico explica conductividad y maleabilidad de los metales usados en mecánica.",
+          "Electronegatividad determina el tipo de enlace: diferencia alta → iónico, baja → covalente.",
+        ],
+      },
+      {
+        title: "Estequiometría",
+        points: [
+          "Balancear primero por tanteo metales, luego no metales, luego H y O al final.",
+          "Mol = puente entre masa (gramos) y número de partículas (Avogadro = 6,022×10²³).",
+          "Reactivo limitante: el que se agota primero y determina la cantidad máxima de producto.",
+        ],
+      },
+      {
+        title: "Corrosión (clave para mecánica)",
+        points: [
+          "La corrosión es una reacción redox: el metal se oxida (pierde electrones) y un agente reductor se reduce.",
+          "Serie galvánica: metales más activos (ánodos) se corroen para proteger a los menos activos (cátodos) — base de la protección catódica.",
+          "Factores que aceleran la corrosión: humedad, electrolitos (sales), temperatura y pares de metales distintos en contacto.",
+        ],
+      },
+    ],
+    formulas: [
+      "n = m / M (moles = masa / masa molar)",
+      "Molaridad: M = n_soluto / V_solución (L)",
+      "pH = −log[H⁺]",
+      "PV = nRT (gases ideales, base para termoquímica)",
+    ],
+    examFocus: [
+      "Balancear ecuaciones químicas por tanteo o método algebraico.",
+      "Calcular reactivo limitante y rendimiento de una reacción.",
+      "Explicar el mecanismo de corrosión galvánica entre dos metales distintos en contacto.",
+      "Calcular pH de soluciones ácidas/básicas simples.",
+    ],
     tips: [
       "Relaciona la corrosión y enlace metálico con Tecnología de los Materiales, se reutiliza más adelante.",
       "Practica balanceo de ecuaciones hasta que sea automático.",
+      "Memoriza la serie galvánica de los metales comunes (Mg, Zn, Fe, Cu): se pregunta directo en pruebas.",
     ],
   },
   {
@@ -74,8 +179,29 @@ const SUBJECTS = [
       "Metodologías de estudio y gestión del tiempo",
       "Estructura de la malla curricular y especialidades",
     ],
+    deepDive: [
+      {
+        title: "Perfil y campo laboral",
+        points: [
+          "El ingeniero mecánico UMAG se desempeña en diseño, mantenimiento, producción, energía y minería.",
+          "Áreas de especialización que verás en la malla: mantenimiento industrial, diseño mecánico, procesos de fabricación.",
+        ],
+      },
+      {
+        title: "Gestión del tiempo y método de estudio",
+        points: [
+          "Técnica Pomodoro o bloques de estudio de 45-50 min con descansos cortos mejora retención en ramos de cálculo.",
+          "Planificar por semana cruzando fechas de pruebas de todos los ramos evita acumulación al final del semestre.",
+        ],
+      },
+    ],
+    examFocus: [
+      "Describir el perfil de egreso y campos de desempeño del ingeniero mecánico.",
+      "Reconocer principios éticos aplicados a casos de ingeniería (seguridad, medioambiente, honestidad técnica).",
+    ],
     tips: [
       "Úsalo para mapear qué área de la mecánica te interesa (mantenimiento, diseño, procesos).",
+      "Aplica desde ya un calendario de estudio: la base que armes aquí te sirve los 4 años.",
     ],
   },
   {
@@ -87,8 +213,31 @@ const SUBJECTS = [
       "Normas de citación y referencias",
       "Trabajo colaborativo y retroalimentación",
     ],
+    deepDive: [
+      {
+        title: "Estructura de un informe técnico",
+        points: [
+          "Portada, resumen/objetivos, marco teórico, metodología, resultados, discusión, conclusiones, referencias.",
+          "Resultados se presentan con tablas/gráficos numerados y referenciados en el texto ('ver Figura 1').",
+          "Conclusión debe responder directamente al objetivo planteado, sin información nueva.",
+        ],
+      },
+      {
+        title: "Citación y referencias",
+        points: [
+          "Formato más usado en ingeniería: APA o IEEE, según lo pida la cátedra.",
+          "Toda figura, tabla o dato que no sea propio debe citarse para evitar plagio.",
+        ],
+      },
+    ],
+    examFocus: [
+      "Redactar un resumen ejecutivo claro y conciso de un tema técnico.",
+      "Aplicar correctamente normas de citación en un texto dado.",
+      "Estructurar un informe de laboratorio completo.",
+    ],
     tips: [
       "Guarda las plantillas de informe: las reutilizarás en laboratorios de toda la carrera.",
+      "Practica explicar un proceso técnico a alguien sin conocimiento previo: si lo entiende, tu redacción funciona.",
     ],
   },
   {
@@ -98,6 +247,16 @@ const SUBJECTS = [
       "Acondicionamiento físico general",
       "Trabajo en equipo y disciplina deportiva",
     ],
+    deepDive: [
+      {
+        title: "Evaluación práctica",
+        points: [
+          "Suele evaluarse con pruebas físicas básicas (resistencia, fuerza) más asistencia y actitud.",
+          "El componente teórico, si existe, cubre nociones de salud, hábitos de vida activa y trabajo en equipo.",
+        ],
+      },
+    ],
+    examFocus: ["Cumplir asistencia mínima y participar activamente en las pruebas físicas programadas."],
     tips: ["Asistencia y constancia suelen ser el criterio principal de evaluación."],
   },
 
@@ -113,9 +272,50 @@ const SUBJECTS = [
       "Integral definida y Teorema Fundamental del Cálculo",
       "Aplicaciones: áreas, volúmenes de revolución",
     ],
+    deepDive: [
+      {
+        title: "Límites y continuidad",
+        points: [
+          "Una función es continua en x=a si existe f(a), existe el límite en a, y ambos coinciden.",
+          "Formas indeterminadas (0/0, ∞/∞) se resuelven factorizando, racionalizando o con L'Hôpital (si ya se vio derivadas).",
+          "Límites al infinito describen asíntotas horizontales; importantes para entender comportamiento de funciones.",
+        ],
+      },
+      {
+        title: "Derivadas",
+        points: [
+          "Regla de la cadena: d/dx[f(g(x))] = f'(g(x))·g'(x) — la más usada en problemas compuestos.",
+          "Para optimización: deriva, iguala a 0, encuentra puntos críticos, usa segunda derivada o tabla de signos para clasificar máx/mín.",
+          "Derivación implícita: deriva ambos lados respecto a x, tratando y como función de x (dy/dx aparece como incógnita).",
+        ],
+      },
+      {
+        title: "Integrales",
+        points: [
+          "Integral = antiderivada; siempre agrega +C en la indefinida.",
+          "Sustitución (cambio de variable) es la técnica más usada: busca una función y su derivada presente en el integrando.",
+          "Integración por partes: ∫u dv = uv − ∫v du; elige 'u' con la regla LIATE (logarítmica, inversa trig., algebraica, trig., exponencial).",
+          "Teorema Fundamental del Cálculo conecta área bajo la curva con la antiderivada evaluada en los límites.",
+        ],
+      },
+    ],
+    formulas: [
+      "Regla de la cadena: (f∘g)'(x) = f'(g(x))·g'(x)",
+      "Derivada de potencia: d/dx[xⁿ] = n·xⁿ⁻¹",
+      "Integración por partes: ∫u dv = uv − ∫v du",
+      "TFC: ∫ₐᵇ f(x) dx = F(b) − F(a)",
+      "Volumen de revolución (discos): V = π∫ₐᵇ [f(x)]² dx",
+    ],
+    examFocus: [
+      "Calcular límites con formas indeterminadas usando factorización o racionalización.",
+      "Resolver problemas de optimización con contexto físico (área máxima, costo mínimo).",
+      "Integrar por sustitución y por partes en una misma prueba.",
+      "Calcular área entre curvas y volumen de sólidos de revolución.",
+    ],
     tips: [
       "La optimización (máx/mín) se usa después en diseño mecánico y resistencia de materiales.",
       "Practica integración por sustitución y por partes hasta automatizarlas.",
+      "Verifica siempre tu derivada/integral derivando el resultado final: es la forma más rápida de autocorregirte.",
     ],
   },
   {
@@ -129,9 +329,57 @@ const SUBJECTS = [
       "Torque, momento angular y equilibrio de cuerpo rígido",
       "Gravitación y movimiento circular",
     ],
+    deepDive: [
+      {
+        title: "Cinemática",
+        points: [
+          "MRUA: v = v₀ + at; x = x₀ + v₀t + ½at²; v² = v₀² + 2aΔx — las tres ecuaciones que resuelven casi todo.",
+          "Tiro parabólico: descompón en eje X (velocidad constante) y eje Y (MRUA con g); el tiempo de vuelo conecta ambos ejes.",
+        ],
+      },
+      {
+        title: "Dinámica y DCL",
+        points: [
+          "Diagrama de cuerpo libre: dibuja SOLO el cuerpo y todas las fuerzas externas que actúan sobre él (peso, normal, tensión, fricción, aplicada).",
+          "ΣF = ma en cada eje; en planos inclinados conviene rotar los ejes paralelo/perpendicular al plano.",
+          "Fricción estática máxima = μₛN; fricción cinética = μₖN (μₖ < μₛ generalmente).",
+        ],
+      },
+      {
+        title: "Trabajo, energía y momentum",
+        points: [
+          "Trabajo W = F·d·cosθ; teorema trabajo-energía: W_neto = ΔEc.",
+          "Energía mecánica se conserva si no hay fricción ni fuerzas no conservativas.",
+          "Choques elásticos conservan momentum y energía cinética; los inelásticos solo conservan momentum.",
+        ],
+      },
+      {
+        title: "Equilibrio de cuerpo rígido",
+        points: [
+          "Condición de equilibrio: ΣF = 0 y ΣTorque = 0 respecto a cualquier punto elegido.",
+          "Elegir el punto de pivote en una fuerza desconocida elimina su torque y simplifica el sistema de ecuaciones.",
+        ],
+      },
+    ],
+    formulas: [
+      "v = v₀ + at",
+      "x = x₀ + v₀t + ½at²",
+      "ΣF = m·a",
+      "W = F·d·cosθ",
+      "Ec = ½mv²;  Ep = mgh",
+      "p = m·v (momentum lineal)",
+      "Torque: τ = F·d·senθ",
+    ],
+    examFocus: [
+      "Resolver sistemas de bloques conectados con poleas usando DCL por cuerpo.",
+      "Tiro parabólico: alcance máximo, altura máxima, tiempo de vuelo.",
+      "Aplicar conservación de energía en planos inclinados con y sin fricción.",
+      "Equilibrio de cuerpo rígido con cargas distribuidas o vigas apoyadas.",
+    ],
     tips: [
       "El diagrama de cuerpo libre es la herramienta más usada en toda la carrera: domínalo aquí.",
       "Equilibrio de cuerpo rígido es la base directa de Mecánica General y Resistencia de Materiales.",
+      "Define siempre un sistema de referencia (signos +/-) antes de plantear ecuaciones, y mantenlo fijo durante todo el problema.",
     ],
   },
   {
@@ -144,9 +392,46 @@ const SUBJECTS = [
       "Sistemas de alimentación e inyección",
       "Diagnóstico básico de fallas",
     ],
+    deepDive: [
+      {
+        title: "Ciclo de 4 tiempos",
+        points: [
+          "Admisión: válvula de admisión abierta, pistón baja, entra mezcla aire-combustible (u aire en diésel).",
+          "Compresión: ambas válvulas cerradas, pistón sube, comprime la mezcla/aire.",
+          "Explosión (combustión): bujía enciende (Otto) o se inyecta combustible que autoenciende por compresión (Diésel); el pistón es empujado hacia abajo — es el único tiempo que entrega trabajo.",
+          "Escape: válvula de escape abierta, pistón sube y expulsa los gases quemados.",
+        ],
+      },
+      {
+        title: "Otto vs Diésel",
+        points: [
+          "Otto: encendido por chispa (bujía), relación de compresión más baja (~8-12:1), usa mezcla aire-combustible premezclada.",
+          "Diésel: autoencendido por compresión, relación de compresión alta (~14-22:1), inyecta combustible directamente en el aire ya comprimido.",
+        ],
+      },
+      {
+        title: "Sistemas de soporte",
+        points: [
+          "Lubricación: reduce fricción y desgaste, evacúa calor parcialmente; presión típica monitoreada por sensor.",
+          "Refrigeración: por agua (radiador, bomba, termostato) o por aire; mantiene temperatura óptima de operación.",
+          "Distribución: sincroniza apertura/cierre de válvulas con la posición del pistón mediante correa/cadena de tiempo.",
+        ],
+      },
+    ],
+    formulas: [
+      "Relación de compresión: rc = (Vd + Vc) / Vc",
+      "Potencia indicada (aprox.): Pi = pmi·V·N / (constante según tiempos)",
+      "Cilindrada unitaria: Vd = (π/4)·D²·L",
+    ],
+    examFocus: [
+      "Describir paso a paso el ciclo de 4 tiempos indicando estado de válvulas y movimiento del pistón.",
+      "Comparar ciclo Otto y Diésel: tipo de encendido, relación de compresión, eficiencia.",
+      "Diagnosticar una falla común (ej. motor no enciende, sobrecalentamiento) a partir de síntomas dados.",
+    ],
     tips: [
       "Aprende el ciclo de 4 tiempos de memoria, es examinado constantemente.",
       "Relaciona cada sistema con su función: evita memorizar piezas sueltas.",
+      "Dibuja el motor en corte de memoria identificando cada componente: ayuda mucho más que solo leer listas.",
     ],
   },
   {
@@ -159,8 +444,47 @@ const SUBJECTS = [
       "Sensores y actuadores electromecánicos",
       "Mantenimiento eléctrico básico",
     ],
+    deepDive: [
+      {
+        title: "Circuitos básicos",
+        points: [
+          "Ley de Ohm: V = I·R, relaciona voltaje, corriente y resistencia.",
+          "Ley de corrientes de Kirchhoff (LCK): la suma de corrientes que entra a un nodo = suma que sale.",
+          "Ley de voltajes de Kirchhoff (LVK): la suma de voltajes en una malla cerrada es cero.",
+          "Resistencias en serie se suman; en paralelo se combinan como inversos (1/Req = 1/R1 + 1/R2 + ...).",
+        ],
+      },
+      {
+        title: "CC vs CA",
+        points: [
+          "Corriente continua: magnitud y sentido constantes (baterías).",
+          "Corriente alterna: varía senoidalmente en el tiempo, caracterizada por frecuencia (Hz) y voltaje RMS.",
+          "Potencia eléctrica: P = V·I (CC); en CA hay que considerar el factor de potencia.",
+        ],
+      },
+      {
+        title: "Motores eléctricos",
+        points: [
+          "Principio básico: un conductor con corriente en un campo magnético experimenta una fuerza (Ley de Lorentz/regla de la mano derecha).",
+          "Motor DC simple: bobina gira por interacción entre su campo magnético y el del imán/estator fijo.",
+          "Esto es la base conceptual para entender motores de inducción en Redes Máquinas Eléctricas (semestre 3).",
+        ],
+      },
+    ],
+    formulas: [
+      "V = I·R (Ley de Ohm)",
+      "P = V·I = I²R = V²/R",
+      "Req(serie) = R1 + R2 + ...",
+      "1/Req(paralelo) = 1/R1 + 1/R2 + ...",
+    ],
+    examFocus: [
+      "Resolver circuitos resistivos mixtos (serie-paralelo) aplicando Ohm y Kirchhoff.",
+      "Calcular potencia disipada en distintos elementos de un circuito.",
+      "Explicar el principio de funcionamiento básico de un motor eléctrico.",
+    ],
     tips: [
       "Domina Ley de Ohm y Kirchhoff: son la base de Redes Máquinas Eléctricas más adelante.",
+      "Practica resolver circuitos con método de mallas o nodos, no solo reducción serie-paralelo.",
     ],
   },
   {
@@ -172,8 +496,44 @@ const SUBJECTS = [
       "Órdenes de trabajo y planificación básica",
       "Seguridad en intervenciones de mantenimiento",
     ],
+    deepDive: [
+      {
+        title: "Tipos de mantenimiento",
+        points: [
+          "Correctivo: se interviene cuando ya ocurrió la falla (mayor costo y riesgo de paradas no planificadas).",
+          "Preventivo: intervención programada en base a tiempo o uso, antes de que falle (ej. cambio de aceite cada X horas).",
+          "Predictivo: se monitorean variables (vibración, temperatura, aceite) para predecir la falla antes de que ocurra.",
+        ],
+      },
+      {
+        title: "Indicadores clave",
+        points: [
+          "MTBF (Mean Time Between Failures): tiempo promedio entre fallas — mide confiabilidad.",
+          "MTTR (Mean Time To Repair): tiempo promedio de reparación — mide capacidad de respuesta.",
+          "Disponibilidad = MTBF / (MTBF + MTTR): proporción de tiempo que el equipo está operativo.",
+        ],
+      },
+      {
+        title: "Orden de trabajo (OT)",
+        points: [
+          "Documento que formaliza una intervención: equipo, falla/tarea, repuestos, tiempo, responsable.",
+          "Es la base de los sistemas CMMS (software de gestión de mantenimiento) usados en la industria real.",
+        ],
+      },
+    ],
+    formulas: [
+      "Disponibilidad = MTBF / (MTBF + MTTR)",
+      "MTBF = Tiempo total de operación / N° de fallas",
+      "MTTR = Tiempo total de reparación / N° de reparaciones",
+    ],
+    examFocus: [
+      "Clasificar un caso dado como mantenimiento correctivo, preventivo o predictivo.",
+      "Calcular MTBF, MTTR y disponibilidad a partir de datos de un equipo.",
+      "Justificar qué estrategia de mantenimiento conviene según criticidad del equipo.",
+    ],
     tips: [
       "Este ramo es la puerta de entrada a toda la línea de Mantenimiento (sem. 3, 5, 6).",
+      "Practica los cálculos de MTBF/MTTR/disponibilidad con datos numéricos, no solo de memoria conceptual.",
     ],
   },
 

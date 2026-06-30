@@ -211,6 +211,35 @@ body{
   border-left: 3px solid var(--accent);
 }
 
+.deep-section{ margin-top:20px; }
+.deep-section h5{
+  font-size:12.5px; font-weight:700; color: var(--text); margin: 0 0 8px;
+  display:flex; align-items:center; gap:8px;
+}
+.deep-section h5::before{
+  content:""; width:6px; height:6px; border-radius:50%; background: var(--accent); display:inline-block;
+}
+.deep-points{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+.deep-points li{
+  font-size:12.5px; line-height:1.55; color: var(--muted);
+  padding: 8px 10px 8px 14px; border-left: 2px solid var(--border); background: rgba(255,255,255,0.02);
+  border-radius: 0 8px 8px 0;
+}
+
+.formula-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+.formula-list li{
+  font-family: var(--mono); font-size:12.5px; color: #5AD1A6;
+  background: rgba(90,209,166,0.08); border:1px solid rgba(90,209,166,0.25);
+  padding: 9px 12px; border-radius:10px;
+}
+
+.exam-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+.exam-list li{
+  font-size:12.5px; line-height:1.5; color:#FFD9A8;
+  background: rgba(255,159,90,0.08); border:1px solid rgba(255,159,90,0.25);
+  padding: 9px 12px; border-radius:10px;
+}
+
 .tab-content{ display:none; }
 .tab-content.active{ display:block; }
 

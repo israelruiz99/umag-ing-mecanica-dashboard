@@ -177,6 +177,34 @@ function openPanel(id, tab = "study"){
   document.getElementById("panelTopics").innerHTML = s.topics.map(t => `<li>${t}</li>`).join("");
   document.getElementById("panelTips").innerHTML = s.tips.map(t => `<li>${t}</li>`).join("");
 
+  const deepEl = document.getElementById("panelDeepDive");
+  if(s.deepDive && s.deepDive.length){
+    deepEl.innerHTML = s.deepDive.map(section => `
+      <div class="deep-section">
+        <h5>${section.title}</h5>
+        <ul class="deep-points">${section.points.map(p => `<li>${p}</li>`).join("")}</ul>
+      </div>
+    `).join("");
+  } else {
+    deepEl.innerHTML = "";
+  }
+
+  const formulasWrap = document.getElementById("panelFormulasWrap");
+  if(s.formulas && s.formulas.length){
+    document.getElementById("panelFormulas").innerHTML = s.formulas.map(f => `<li>${f}</li>`).join("");
+    formulasWrap.style.display = "";
+  } else {
+    formulasWrap.style.display = "none";
+  }
+
+  const examWrap = document.getElementById("panelExamWrap");
+  if(s.examFocus && s.examFocus.length){
+    document.getElementById("panelExam").innerHTML = s.examFocus.map(f => `<li>${f}</li>`).join("");
+    examWrap.style.display = "";
+  } else {
+    examWrap.style.display = "none";
+  }
+
   setTab(tab);
   renderGradeList();
 
