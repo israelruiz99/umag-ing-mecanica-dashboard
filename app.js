@@ -1,10 +1,16 @@
 // ===== State =====
 const STORAGE_KEY = "umag-mecanica-grades-v1";
+const PASSMIN_KEY = "umag-mecanica-passmin-v1";
 let grades = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+let passMins = JSON.parse(localStorage.getItem(PASSMIN_KEY) || "{}");
 let activeSubjectId = null;
 
 function saveGrades(){
   localStorage.setItem(STORAGE_KEY, JSON.stringify(grades));
+}
+
+function savePassMins(){
+  localStorage.setItem(PASSMIN_KEY, JSON.stringify(passMins));
 }
 
 function subjectAvg(id){
@@ -23,6 +29,14 @@ function subjectAvg(id){
 function globalAvg(){
   const vals = SUBJECTS.map(s => subjectAvg(s.id)).filter(v => v !== null);
   if(!vals.length) return null;
+  return vals.reduce((a,b)=>a+b,0) / vals.length;
+}
+
+// Avance de un semestre: promedio de las notas obtenidas en los ramos de ese semestre
+// que ya tienen al menos una evaluación registrada (0% si ninguno tiene notas aún).
+function semesterProgress(items){
+  const vals = items.map(s => subjectAvg(s.id)).filter(v => v !== null);
+  if(!vals.length) return 0;
   return vals.reduce((a,b)=>a+b,0) / vals.length;
 }
 
@@ -117,6 +131,7 @@ function renderOverview(filterText = ""){
       : block.items;
     if(ft && items.length === 0) return;
 
+    const progress = semesterProgress(block.items);
     const section = document.createElement("div");
     section.className = "semester-block";
     section.id = `sem-${block.year}-${block.semester}`;
@@ -124,6 +139,10 @@ function renderOverview(filterText = ""){
       <div class="semester-title">
         AÑO ${block.year} · SEMESTRE ${block.semester}
         <span class="badge">${items.length} ramos</span>
+        <span class="semester-progress">
+          <span class="bar"><div class="bar-fill" style="width:${Math.min(100, progress)}%"></div></span>
+          <span class="sp-label">${progress > 0 ? progress.toFixed(0) + '%' : '—'}</span>
+        </span>
       </div>
       <div class="cards-grid">
         ${items.map(subjectCardHTML).join("")}
@@ -193,6 +212,8 @@ function openPanel(id, tab = "study"){
   }).join("");
   document.getElementById("panelTips").innerHTML = s.tips.map(t => `<li>${t}</li>`).join("");
 
+  document.getElementById("passMinInput").value = passMins[s.id] ?? "";
+
   setTab(tab);
   renderGradeList();
 
@@ -244,6 +265,19 @@ function renderGradeList(){
   const avg = subjectAvg(activeSubjectId);
   avgBox.textContent = avg !== null ? avg.toFixed(1) : "—";
 
+  const passStatusEl = document.getElementById("passStatus");
+  const passMin = passMins[activeSubjectId];
+  if(avg !== null && passMin !== undefined && passMin !== null && passMin !== ""){
+    const passed = avg >= Number(passMin);
+    passStatusEl.style.display = "";
+    passStatusEl.className = "pass-status " + (passed ? "pass" : "fail");
+    passStatusEl.textContent = passed
+      ? `✓ Aprobado (necesitabas ${Number(passMin).toFixed(1)})`
+      : `✕ Bajo el mínimo — te faltan ${(Number(passMin) - avg).toFixed(1)} puntos`;
+  } else {
+    passStatusEl.style.display = "none";
+  }
+
   const weightTotalEl = document.getElementById("weightTotal");
   const totalWeight = list.reduce((a,b)=> a + (Number(b.weight) || 0), 0);
   if(!list.length){
@@ -266,6 +300,18 @@ function renderGradeList(){
     });
   });
 }
+
+document.getElementById("passMinInput").addEventListener("input", e => {
+  if(!activeSubjectId) return;
+  const val = e.target.value;
+  if(val === ""){
+    delete passMins[activeSubjectId];
+  } else {
+    passMins[activeSubjectId] = parseFloat(val);
+  }
+  savePassMins();
+  renderGradeList();
+});
 
 document.getElementById("evalAdd").addEventListener("click", () => {
   if(!activeSubjectId) return;
@@ -297,9 +343,87 @@ document.getElementById("evalAdd").addEventListener("click", () => {
 function switchView(view){
   document.querySelectorAll(".nav-item[data-view]").forEach(b => b.classList.toggle("active", b.dataset.view === view));
   document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === `view-${view}`));
+  if(view === "profile") renderProfileView();
 }
 document.querySelectorAll(".nav-item[data-view]").forEach(b => {
   b.addEventListener("click", () => switchView(b.dataset.view));
+});
+
+// ===== Profile / Auth =====
+function renderProfileView(){
+  const user = currentUser();
+  const authBox = document.getElementById("authBox");
+  const profileBox = document.getElementById("profileBox");
+
+  if(!user){
+    authBox.style.display = "";
+    profileBox.style.display = "none";
+    return;
+  }
+
+  authBox.style.display = "none";
+  profileBox.style.display = "";
+  document.getElementById("profileAvatar").textContent = (user.name || user.email)[0].toUpperCase();
+  document.getElementById("profileName").textContent = user.name || "Sin nombre";
+  document.getElementById("profileEmail").textContent = user.email;
+  document.getElementById("profileNameInput").value = user.name || "";
+  document.getElementById("profileCareerInput").value = user.career || "Ingeniería en Mecánica — UMAG";
+  document.getElementById("profileYearInput").value = user.year || 1;
+}
+
+document.querySelectorAll(".auth-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".auth-tab").forEach(t => t.classList.toggle("active", t === tab));
+    document.querySelectorAll(".auth-form").forEach(f => f.classList.remove("active"));
+    document.getElementById(tab.dataset.authTab === "login" ? "loginForm" : "registerForm").classList.add("active");
+  });
+});
+
+document.getElementById("loginForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+  const result = loginUser(email, password);
+  const errorEl = document.getElementById("loginError");
+  if(!result.ok){
+    errorEl.textContent = result.error;
+    return;
+  }
+  errorEl.textContent = "";
+  renderProfileView();
+});
+
+document.getElementById("registerForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const name = document.getElementById("regName").value;
+  const email = document.getElementById("regEmail").value;
+  const password = document.getElementById("regPassword").value;
+  const result = registerUser(name, email, password);
+  const errorEl = document.getElementById("registerError");
+  if(!result.ok){
+    errorEl.textContent = result.error;
+    return;
+  }
+  errorEl.textContent = "";
+  renderProfileView();
+});
+
+document.getElementById("profileForm").addEventListener("submit", e => {
+  e.preventDefault();
+  updateProfile({
+    name: document.getElementById("profileNameInput").value.trim(),
+    career: document.getElementById("profileCareerInput").value.trim(),
+    year: parseInt(document.getElementById("profileYearInput").value, 10),
+  });
+  renderProfileView();
+  const savedEl = document.getElementById("profileSaved");
+  savedEl.textContent = "✓ Perfil actualizado.";
+  setTimeout(() => savedEl.textContent = "", 2000);
+});
+
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  logoutUser();
+  renderProfileView();
 });
 
 // ===== Search =====

@@ -30,6 +30,9 @@
       <button class="nav-item" data-view="grades">
         <span class="nav-ico">◔</span> Mis Notas
       </button>
+      <button class="nav-item" data-view="profile">
+        <span class="nav-ico">☺</span> Mi Perfil
+      </button>
     </nav>
 
     <nav class="nav years-nav" id="yearsNav">
@@ -85,6 +88,75 @@
       <div class="grades-grid" id="gradesGrid"></div>
     </section>
 
+    <!-- PROFILE VIEW -->
+    <section id="view-profile" class="view">
+      <div class="view-head">
+        <div>
+          <h1>Mi Perfil</h1>
+          <p class="muted">Inicia sesión para personalizar tu sesión. Tus datos se guardan solo en este navegador (no hay servidor).</p>
+        </div>
+      </div>
+
+      <!-- Logged out: login / register -->
+      <div id="authBox" class="auth-box">
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-auth-tab="login">Iniciar sesión</button>
+          <button class="auth-tab" data-auth-tab="register">Crear cuenta</button>
+        </div>
+
+        <form id="loginForm" class="auth-form active">
+          <label>Correo</label>
+          <input type="email" id="loginEmail" placeholder="tucorreo@ejemplo.com" required>
+          <label>Clave</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required>
+          <button type="submit">Iniciar sesión</button>
+          <p class="auth-error" id="loginError"></p>
+        </form>
+
+        <form id="registerForm" class="auth-form">
+          <label>Nombre</label>
+          <input type="text" id="regName" placeholder="Tu nombre" required>
+          <label>Correo</label>
+          <input type="email" id="regEmail" placeholder="tucorreo@ejemplo.com" required>
+          <label>Clave</label>
+          <input type="password" id="regPassword" placeholder="Mínimo 4 caracteres" required>
+          <button type="submit">Crear cuenta</button>
+          <p class="auth-error" id="registerError"></p>
+        </form>
+
+        <p class="auth-note">⚠️ Este sitio es estático (GitHub Pages), no tiene servidor ni base de datos. Tu cuenta y clave se guardan únicamente en el almacenamiento local de este navegador — no es un sistema de autenticación seguro ni sincronizado entre dispositivos.</p>
+      </div>
+
+      <!-- Logged in: profile settings -->
+      <div id="profileBox" class="profile-box" style="display:none">
+        <div class="profile-card">
+          <div class="profile-avatar" id="profileAvatar">U</div>
+          <div>
+            <h2 id="profileName">—</h2>
+            <p class="muted" id="profileEmail">—</p>
+          </div>
+        </div>
+
+        <form id="profileForm" class="auth-form">
+          <label>Nombre</label>
+          <input type="text" id="profileNameInput">
+          <label>Carrera</label>
+          <input type="text" id="profileCareerInput" value="Ingeniería en Mecánica — UMAG">
+          <label>Año actual</label>
+          <select id="profileYearInput">
+            <option value="1">Año 1</option>
+            <option value="2">Año 2</option>
+            <option value="3">Año 3</option>
+            <option value="4">Año 4</option>
+          </select>
+          <button type="submit">Guardar cambios</button>
+          <p class="auth-error ok" id="profileSaved"></p>
+        </form>
+
+        <button class="logout-btn" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </section>
+
   </main>
 </div>
 
@@ -123,10 +195,15 @@
         <input type="number" id="evalWeight" placeholder="% ponderación" step="1" min="0" max="100">
         <button id="evalAdd">Agregar</button>
       </div>
+      <div class="passmin-row">
+        <span>Nota mínima para aprobar</span>
+        <input type="number" id="passMinInput" placeholder="ej: 60" step="0.1" min="0" max="100">
+      </div>
       <div class="grade-avg" id="subjectAvgBox">
         <span>Promedio ponderado del ramo</span>
         <strong id="subjectAvg">—</strong>
       </div>
+      <div class="pass-status" id="passStatus" style="display:none"></div>
       <div class="weight-total" id="weightTotal"></div>
       <ul class="grade-list" id="gradeList"></ul>
     </div>
@@ -134,6 +211,7 @@
 </aside>
 
 <script src="data.js"></script>
+<script src="auth.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

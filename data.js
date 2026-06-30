@@ -578,11 +578,44 @@ const SUBJECTS = [
     id: "redes-maquinas-elec", name: "Redes Máquinas Eléctricas", year: 2, semester: 3, area: "elec",
     summary: "Máquinas eléctricas (motores, transformadores) y su conexión en redes industriales.",
     topics: [
-      "Transformadores: principio y relación de transformación",
-      "Motores asíncronos (inducción) y síncronos",
-      "Sistemas trifásicos: estrella y triángulo",
-      "Arranque y protección de motores",
-      "Distribución eléctrica industrial básica",
+      {
+        title: "Transformadores: principio y relación de transformación",
+        points: [
+          "Un transformador cambia el nivel de voltaje manteniendo la potencia (idealmente) mediante inducción electromagnética entre dos bobinados.",
+          "La relación de transformación depende del número de vueltas de cada bobinado.",
+        ],
+        formulas: ["V1/V2 = N1/N2 = I2/I1"],
+      },
+      {
+        title: "Motores asíncronos (inducción) y síncronos",
+        points: [
+          "Motor de inducción: el rotor gira a una velocidad menor que el campo magnético del estator (desliz > 0).",
+          "Motor síncrono: el rotor gira exactamente a la velocidad del campo magnético (sin desliz).",
+          "La velocidad síncrona depende de la frecuencia de la red y el número de polos del motor.",
+        ],
+        formulas: ["Ns = 120·f / p", "Desliz: s = (Ns − Nr)/Ns"],
+      },
+      {
+        title: "Sistemas trifásicos: estrella y triángulo",
+        points: [
+          "Conexión estrella (Y): voltaje de línea es √3 veces el voltaje de fase.",
+          "Conexión triángulo (Δ): voltaje de línea = voltaje de fase; corriente de línea es √3 veces la de fase.",
+        ],
+        formulas: ["P = √3 · VL · IL · cos φ", "Estrella: VL = √3·Vf", "Triángulo: IL = √3·If"],
+      },
+      {
+        title: "Arranque y protección de motores",
+        points: [
+          "El arranque directo produce alta corriente inicial (5-7 veces la nominal); arranque estrella-triángulo la reduce.",
+          "Protecciones típicas: térmico (sobrecarga), guardamotor, fusibles e interruptores diferenciales.",
+        ],
+      },
+      {
+        title: "Distribución eléctrica industrial básica",
+        points: [
+          "Un tablero de distribución reparte la energía desde la acometida hacia los distintos circuitos/equipos.",
+        ],
+      },
     ],
     tips: [
       "Practica cálculos trifásicos (potencia, corriente) con fórmulas siempre a mano.",
@@ -592,12 +625,51 @@ const SUBJECTS = [
     id: "mecanica-fluidos", name: "Mecánica de los Fluidos", year: 2, semester: 3, area: "mecan",
     summary: "Estática y dinámica de fluidos aplicada a sistemas mecánicos.",
     topics: [
-      "Propiedades de los fluidos: densidad, viscosidad, presión",
-      "Hidrostática: principio de Pascal, fuerzas sobre superficies",
-      "Ecuación de continuidad",
-      "Ecuación de Bernoulli y aplicaciones",
-      "Flujo en tuberías: pérdidas de carga (Darcy-Weisbach)",
-      "Número de Reynolds: flujo laminar vs turbulento",
+      {
+        title: "Propiedades de los fluidos: densidad, viscosidad, presión",
+        points: [
+          "Densidad relaciona masa y volumen; viscosidad mide la resistencia interna del fluido a fluir.",
+          "Presión = fuerza por unidad de área; en un fluido en reposo actúa igual en todas direcciones (principio de Pascal).",
+        ],
+        formulas: ["ρ = m / V", "P = F / A"],
+      },
+      {
+        title: "Hidrostática: principio de Pascal, fuerzas sobre superficies",
+        points: [
+          "La presión hidrostática aumenta linealmente con la profundidad.",
+          "Principio de Pascal: la presión aplicada a un fluido confinado se transmite íntegra a todo el fluido (base de prensas hidráulicas).",
+        ],
+        formulas: ["P = P0 + ρ·g·h"],
+      },
+      {
+        title: "Ecuación de continuidad",
+        points: [
+          "En un flujo incompresible, el caudal se mantiene constante: a menor área, mayor velocidad.",
+        ],
+        formulas: ["Q = A·v = constante", "A1·v1 = A2·v2"],
+      },
+      {
+        title: "Ecuación de Bernoulli y aplicaciones",
+        points: [
+          "Bernoulli relaciona presión, velocidad y altura a lo largo de una línea de corriente (conservación de energía en el fluido).",
+          "Aplicaciones: tubo de Venturi, medidores de flujo, perfil de ala.",
+        ],
+        formulas: ["P1 + ½ρv1² + ρgh1 = P2 + ½ρv2² + ρgh2"],
+      },
+      {
+        title: "Flujo en tuberías: pérdidas de carga (Darcy-Weisbach)",
+        points: [
+          "Las pérdidas de carga dependen de la longitud, diámetro, rugosidad de la tubería y velocidad del fluido.",
+        ],
+        formulas: ["hf = f · (L/D) · (v²/2g)"],
+      },
+      {
+        title: "Número de Reynolds: flujo laminar vs turbulento",
+        points: [
+          "Re < 2300 → flujo laminar; Re > 4000 → flujo turbulento; entre ambos, zona de transición.",
+        ],
+        formulas: ["Re = ρ·v·D / μ"],
+      },
     ],
     tips: [
       "Bernoulli + continuidad es la base de Hidráulica y Neumática del próximo semestre.",
@@ -608,10 +680,22 @@ const SUBJECTS = [
     id: "taller-tec-inversa", name: "Taller de Tecnología Inversa", year: 2, semester: 3, area: "mecan",
     summary: "Análisis de componentes mecánicos mediante desarme, medición y modelado inverso.",
     topics: [
-      "Desarme y documentación de componentes mecánicos",
-      "Medición dimensional para reconstrucción de planos",
-      "Identificación de materiales y procesos de fabricación",
-      "Reconstrucción CAD a partir de pieza física",
+      {
+        title: "Desarme y documentación de componentes mecánicos",
+        points: ["Documenta cada paso del desarme con fotos y orden de piezas para poder rearmar sin errores."],
+      },
+      {
+        title: "Medición dimensional para reconstrucción de planos",
+        points: ["Usa pie de metro, micrómetro y calibres para capturar cada cota antes de modelar en CAD."],
+      },
+      {
+        title: "Identificación de materiales y procesos de fabricación",
+        points: ["Las marcas de mecanizado, acabado superficial y geometría dan pistas del proceso de fabricación original."],
+      },
+      {
+        title: "Reconstrucción CAD a partir de pieza física",
+        points: ["El modelo 3D final debe reproducir tolerancias y ajustes funcionales, no solo la forma exterior."],
+      },
     ],
     tips: [
       "Lleva siempre tus instrumentos de medición y registra todo en bitácora con fotos.",
@@ -621,10 +705,22 @@ const SUBJECTS = [
     id: "admin-mantenimiento", name: "Administración de Mantenimiento", year: 2, semester: 3, area: "gest",
     summary: "Gestión, planificación y control de recursos para mantenimiento industrial.",
     topics: [
-      "Planificación y programación de mantenimiento",
-      "Gestión de repuestos e inventario",
-      "Costos de mantenimiento",
-      "Indicadores de gestión (KPI) y mejora continua",
+      {
+        title: "Planificación y programación de mantenimiento",
+        points: ["Planificar define QUÉ se hará; programar define CUÁNDO y con QUÉ recursos."],
+      },
+      {
+        title: "Gestión de repuestos e inventario",
+        points: ["Clasificar repuestos por criticidad (críticos, importantes, triviales) evita sobre-stock o quiebres de stock."],
+      },
+      {
+        title: "Costos de mantenimiento",
+        points: ["Costos directos (mano de obra, repuestos) + costos indirectos (parada de producción) componen el costo total."],
+      },
+      {
+        title: "Indicadores de gestión (KPI) y mejora continua",
+        points: ["KPI típicos: cumplimiento de plan, costo de mantenimiento/facturación, disponibilidad de equipos."],
+      },
     ],
     tips: ["Conecta los conceptos con Mantenimiento Industrial (sem 2) y Estrategias del Mantenimiento (sem 5)."],
   },
@@ -632,11 +728,26 @@ const SUBJECTS = [
     id: "dibujo-1", name: "Dibujo I", year: 2, semester: 3, area: "diseno",
     summary: "Fundamentos de dibujo técnico y normalización para ingeniería.",
     topics: [
-      "Normas de dibujo técnico (ISO, escalas, formatos)",
-      "Vistas ortogonales y proyección de planos",
-      "Cortes y secciones",
-      "Acotado y tolerancias básicas",
-      "Introducción a software CAD 2D",
+      {
+        title: "Normas de dibujo técnico (ISO, escalas, formatos)",
+        points: ["Las normas ISO estandarizan tipos de línea, formatos de hoja (A4, A3...) y escalas para que cualquier ingeniero lea el plano igual."],
+      },
+      {
+        title: "Vistas ortogonales y proyección de planos",
+        points: ["El método de proyección (primer o tercer ángulo) determina cómo se ubican las vistas (planta, alzado, perfil) entre sí."],
+      },
+      {
+        title: "Cortes y secciones",
+        points: ["Un corte revela geometría interna que no se ve en vista exterior; el rayado indica el material seccionado."],
+      },
+      {
+        title: "Acotado y tolerancias básicas",
+        points: ["Cada cota se coloca una sola vez y en la vista donde la geometría se ve más clara, evitando cotas redundantes."],
+      },
+      {
+        title: "Introducción a software CAD 2D",
+        points: ["Dominar capas, tipos de línea y bloques en CAD acelera mucho la elaboración de planos."],
+      },
     ],
     tips: [
       "Practica proyección de vistas a mano antes de usar el software: ayuda a visualizar en 3D.",
@@ -646,9 +757,18 @@ const SUBJECTS = [
     id: "ingles-tecnico", name: "Inglés Técnico", year: 2, semester: 3, area: "idioma",
     summary: "Vocabulario técnico en inglés para lectura de manuales y normas.",
     topics: [
-      "Vocabulario de mecánica, materiales y procesos en inglés",
-      "Lectura de manuales técnicos y datasheets",
-      "Comprensión de normas internacionales en inglés",
+      {
+        title: "Vocabulario de mecánica, materiales y procesos en inglés",
+        points: ["Aprende los términos en familias (fasteners, bearings, welding) en vez de listas sueltas: se memoriza mejor por contexto."],
+      },
+      {
+        title: "Lectura de manuales técnicos y datasheets",
+        points: ["Los datasheets siguen una estructura predecible: specs, dimensiones, condiciones de operación — aprende a escanearlos rápido."],
+      },
+      {
+        title: "Comprensión de normas internacionales en inglés",
+        points: ["Normas como ASTM o ASME usan inglés técnico estandarizado, útil reconocer abreviaturas comunes (min., max., approx.)."],
+      },
     ],
     tips: ["Lee datasheets de componentes reales (rodamientos, motores) para practicar contexto técnico."],
   },
@@ -658,11 +778,33 @@ const SUBJECTS = [
     id: "mate-aplicada-2", name: "Matemática Aplicada II", year: 2, semester: 4, area: "mate",
     summary: "Cálculo multivariable, ecuaciones diferenciales y series.",
     topics: [
-      "Funciones de varias variables y derivadas parciales",
-      "Integrales múltiples (dobles)",
-      "Ecuaciones diferenciales ordinarias de primer y segundo orden",
-      "Aplicaciones a sistemas físicos (vibraciones, enfriamiento)",
-      "Series y aproximaciones (introducción)",
+      {
+        title: "Funciones de varias variables y derivadas parciales",
+        points: ["La derivada parcial mide la razón de cambio respecto a una variable, manteniendo las demás constantes."],
+        formulas: ["∂f/∂x: deriva tratando y, z,... como constantes"],
+      },
+      {
+        title: "Integrales múltiples (dobles)",
+        points: ["La integral doble calcula volumen bajo una superficie sobre una región del plano; se resuelve como integrales iteradas."],
+        formulas: ["∬_R f(x,y) dA = ∫∫ f(x,y) dy dx"],
+      },
+      {
+        title: "Ecuaciones diferenciales ordinarias de primer y segundo orden",
+        points: [
+          "EDO de primer orden: variables separables o factor integrante son los métodos más comunes.",
+          "EDO de segundo orden lineal homogénea: se resuelve con la ecuación característica.",
+        ],
+        formulas: ["ay'' + by' + cy = 0  →  ecuación característica: ar² + br + c = 0"],
+      },
+      {
+        title: "Aplicaciones a sistemas físicos (vibraciones, enfriamiento)",
+        points: ["La ley de enfriamiento de Newton y los sistemas masa-resorte se modelan con EDOs de 1er y 2do orden respectivamente."],
+        formulas: ["Enfriamiento: dT/dt = −k(T − Tamb)"],
+      },
+      {
+        title: "Series y aproximaciones (introducción)",
+        points: ["Las series de Taylor permiten aproximar funciones complejas con polinomios cerca de un punto."],
+      },
     ],
     tips: [
       "Las EDOs de segundo orden reaparecen en Cinemática de Máquinas y vibraciones mecánicas.",
@@ -672,11 +814,27 @@ const SUBJECTS = [
     id: "hidraulica-neumatica", name: "Hidráulica y Neumática", year: 2, semester: 4, area: "mecan",
     summary: "Sistemas de transmisión de potencia mediante fluidos a presión y aire comprimido.",
     topics: [
-      "Componentes hidráulicos: bombas, válvulas, cilindros",
-      "Circuitos hidráulicos y simbología ISO",
-      "Componentes neumáticos: compresores, actuadores",
-      "Circuitos neumáticos básicos y secuenciales",
-      "Cálculo de fuerza, caudal y presión en cilindros",
+      {
+        title: "Componentes hidráulicos: bombas, válvulas, cilindros",
+        points: ["La bomba genera caudal (no presión directamente); la presión surge de la resistencia del circuito."],
+      },
+      {
+        title: "Circuitos hidráulicos y simbología ISO",
+        points: ["Cada símbolo ISO representa función, no forma física: aprende a leer dirección de flujo y accionamiento de válvulas."],
+      },
+      {
+        title: "Componentes neumáticos: compresores, actuadores",
+        points: ["El aire comprimido es compresible, a diferencia del aceite hidráulico: esto hace los sistemas neumáticos más elásticos pero menos precisos."],
+      },
+      {
+        title: "Circuitos neumáticos básicos y secuenciales",
+        points: ["Los circuitos secuenciales usan sensores de fin de carrera para encadenar movimientos de varios cilindros en orden."],
+      },
+      {
+        title: "Cálculo de fuerza, caudal y presión en cilindros",
+        points: ["La fuerza de un cilindro depende del área del pistón y la presión de trabajo; el área en retroceso es menor (por el vástago)."],
+        formulas: ["F = P · A", "Q = A · v (velocidad del vástago)"],
+      },
     ],
     tips: [
       "Aprende la simbología ISO de memoria: aparece en evaluaciones de lectura de circuitos.",
@@ -687,11 +845,27 @@ const SUBJECTS = [
     id: "electronica-analoga-digital", name: "Electrónica Análoga Digital", year: 2, semester: 4, area: "elec",
     summary: "Fundamentos de electrónica analógica y digital aplicada a control industrial.",
     topics: [
-      "Diodos, transistores y amplificadores básicos",
-      "Álgebra de Boole y compuertas lógicas",
-      "Circuitos combinacionales y secuenciales",
-      "Conversión análogo-digital (ADC/DAC)",
-      "Introducción a microcontroladores/PLC",
+      {
+        title: "Diodos, transistores y amplificadores básicos",
+        points: ["El diodo conduce en un solo sentido; el transistor actúa como interruptor o amplificador controlado por corriente/voltaje."],
+      },
+      {
+        title: "Álgebra de Boole y compuertas lógicas",
+        points: ["AND, OR, NOT son la base; cualquier función lógica se puede construir combinándolas (o con NAND/NOR universales)."],
+        formulas: ["AND: Y = A·B", "OR: Y = A+B", "NOT: Y = Ā"],
+      },
+      {
+        title: "Circuitos combinacionales y secuenciales",
+        points: ["Combinacional: la salida depende solo de las entradas actuales. Secuencial: depende también del estado anterior (tiene memoria, ej. flip-flops)."],
+      },
+      {
+        title: "Conversión análogo-digital (ADC/DAC)",
+        points: ["El ADC discretiza una señal continua en niveles digitales; la resolución (bits) define la precisión de esa conversión."],
+      },
+      {
+        title: "Introducción a microcontroladores/PLC",
+        points: ["Un microcontrolador integra procesador, memoria y E/S en un solo chip, ideal para control embebido simple."],
+      },
     ],
     tips: [
       "El álgebra de Boole es clave para Automatización Industrial más adelante.",
@@ -701,9 +875,9 @@ const SUBJECTS = [
     id: "ingles-conversacional", name: "Inglés Conversacional", year: 2, semester: 4, area: "idioma",
     summary: "Desarrollo de fluidez oral en inglés con foco en contextos técnicos y laborales.",
     topics: [
-      "Conversación cotidiana y profesional",
-      "Presentaciones orales en inglés",
-      "Listening con material técnico-industrial",
+      { title: "Conversación cotidiana y profesional", points: ["Practica diálogos de entrevista de trabajo y reuniones técnicas: son los contextos más evaluados."] },
+      { title: "Presentaciones orales en inglés", points: ["Estructura: introducción, desarrollo con 2-3 puntos clave, conclusión — igual que en español pero con vocabulario técnico en inglés."] },
+      { title: "Listening con material técnico-industrial", points: ["Videos de procesos industriales con subtítulos en inglés son buen material de práctica de oído."] },
     ],
     tips: ["Practica presentaciones de tus propios proyectos en inglés, se reutiliza para CV/entrevistas."],
   },
@@ -711,10 +885,22 @@ const SUBJECTS = [
     id: "metrologia", name: "Metrología y Tecnología Mecánica", year: 2, semester: 4, area: "mecan",
     summary: "Principios de medición dimensional y control de calidad en manufactura.",
     topics: [
-      "Instrumentos de medición: pie de metro, micrómetro, comparador",
-      "Tolerancias dimensionales y geométricas (GD&T básico)",
-      "Calibración y trazabilidad metrológica",
-      "Control estadístico de procesos (introducción)",
+      {
+        title: "Instrumentos de medición: pie de metro, micrómetro, comparador",
+        points: ["El pie de metro mide con resolución de 0,02-0,05 mm; el micrómetro llega a 0,01 mm o menos para mayor precisión."],
+      },
+      {
+        title: "Tolerancias dimensionales y geométricas (GD&T básico)",
+        points: ["La tolerancia define el rango aceptable de una medida; GD&T además controla forma, orientación y posición."],
+      },
+      {
+        title: "Calibración y trazabilidad metrológica",
+        points: ["Todo instrumento debe calibrarse contra un patrón trazable a un estándar nacional/internacional."],
+      },
+      {
+        title: "Control estadístico de procesos (introducción)",
+        points: ["Las cartas de control detectan si un proceso de fabricación se mantiene dentro de límites estadísticos esperados."],
+      },
     ],
     tips: [
       "Practica lectura de pie de metro y micrómetro hasta leerlos sin dudar: es habilidad evaluada en taller.",
@@ -724,12 +910,34 @@ const SUBJECTS = [
     id: "tec-materiales", name: "Tecnología de los Materiales", year: 2, semester: 4, area: "mater",
     summary: "Estructura, propiedades y selección de materiales de ingeniería.",
     topics: [
-      "Estructura cristalina de metales",
-      "Diagramas de fase (ej. Fe-C)",
-      "Tratamientos térmicos: temple, revenido, recocido",
-      "Propiedades mecánicas: dureza, ductilidad, tenacidad",
-      "Ensayos de materiales (tracción, dureza, impacto)",
-      "Selección de materiales según aplicación",
+      {
+        title: "Estructura cristalina de metales",
+        points: ["Las estructuras BCC, FCC y HCP determinan propiedades mecánicas como ductilidad y resistencia."],
+      },
+      {
+        title: "Diagramas de fase (ej. Fe-C)",
+        points: ["El diagrama Fe-C muestra qué fases (ferrita, austenita, cementita) existen según %C y temperatura — clave para entender aceros."],
+      },
+      {
+        title: "Tratamientos térmicos: temple, revenido, recocido",
+        points: [
+          "Temple: enfriamiento rápido que aumenta dureza pero también fragilidad.",
+          "Revenido: se aplica después del temple para reducir fragilidad manteniendo dureza razonable.",
+          "Recocido: ablanda el material y elimina tensiones internas.",
+        ],
+      },
+      {
+        title: "Propiedades mecánicas: dureza, ductilidad, tenacidad",
+        points: ["Dureza resiste la penetración; ductilidad permite deformarse sin romper; tenacidad absorbe energía de impacto antes de fracturar."],
+      },
+      {
+        title: "Ensayos de materiales (tracción, dureza, impacto)",
+        points: ["El ensayo de tracción entrega el diagrama esfuerzo-deformación, de donde se obtiene E, Sy y Su."],
+      },
+      {
+        title: "Selección de materiales según aplicación",
+        points: ["La selección balancea propiedades mecánicas, costo, disponibilidad y resistencia ambiental (corrosión, temperatura)."],
+      },
     ],
     tips: [
       "El diagrama Fe-C y tratamientos térmicos son tema recurrente de examen.",
@@ -740,10 +948,10 @@ const SUBJECTS = [
     id: "dibujo-2", name: "Dibujo II", year: 2, semester: 4, area: "diseno",
     summary: "Dibujo técnico avanzado y modelado 3D para piezas y ensambles.",
     topics: [
-      "Modelado 3D paramétrico (CAD)",
-      "Ensambles y despieces",
-      "Planos de fabricación y de detalle",
-      "Tolerancias y ajustes (sistema agujero/eje base)",
+      { title: "Modelado 3D paramétrico (CAD)", points: ["El modelado paramétrico usa cotas y relaciones (restricciones) que permiten editar la pieza cambiando valores, no rehaciendo la geometría."] },
+      { title: "Ensambles y despieces", points: ["El ensamble define relaciones de posición entre piezas (coincidente, concéntrico, distancia); el despiece lista cada componente con cantidad."] },
+      { title: "Planos de fabricación y de detalle", points: ["El plano de detalle debe incluir toda la información para fabricar la pieza sin ambigüedad: cotas, tolerancias, acabado, material."] },
+      { title: "Tolerancias y ajustes (sistema agujero/eje base)", points: ["Sistema agujero base: el agujero mantiene tolerancia fija y el eje se ajusta; es el más usado en la industria."] },
     ],
     tips: ["Guarda tus modelos CAD: te servirán de base para Diseños Mecánicos en semestre 7."],
   },
@@ -753,10 +961,14 @@ const SUBJECTS = [
     id: "econ-adm-empresas", name: "Economía y Adm. de Empresas", year: 3, semester: 5, area: "gest",
     summary: "Conceptos de economía y administración aplicados a la gestión industrial.",
     topics: [
-      "Principios de oferta y demanda",
-      "Estructura organizacional de empresas",
-      "Costos, ingresos y punto de equilibrio",
-      "Indicadores financieros básicos",
+      { title: "Principios de oferta y demanda", points: ["El precio de equilibrio surge donde la cantidad ofrecida iguala a la demandada."] },
+      { title: "Estructura organizacional de empresas", points: ["Estructuras funcionales, divisionales o matriciales definen cómo fluye la autoridad y la comunicación."] },
+      {
+        title: "Costos, ingresos y punto de equilibrio",
+        points: ["El punto de equilibrio es donde los ingresos totales igualan a los costos totales (ni gana ni pierde)."],
+        formulas: ["Punto de equilibrio (unidades) = Costos fijos / (Precio − Costo variable unitario)"],
+      },
+      { title: "Indicadores financieros básicos", points: ["Liquidez, rentabilidad y endeudamiento son las tres familias básicas de indicadores financieros."] },
     ],
     tips: ["Relaciona el punto de equilibrio con decisiones de mantenimiento (reparar vs reemplazar)."],
   },
@@ -764,11 +976,29 @@ const SUBJECTS = [
     id: "mecanica-general", name: "Mecánica General", year: 3, semester: 5, area: "mecan",
     summary: "Estática y dinámica aplicada de cuerpos rígidos y sistemas mecánicos.",
     topics: [
-      "Equilibrio de cuerpos rígidos en 2D y 3D",
-      "Análisis de estructuras: armaduras y marcos",
-      "Centro de masa y momentos de inercia",
-      "Dinámica de partículas y cuerpos rígidos",
-      "Fricción en sistemas mecánicos",
+      {
+        title: "Equilibrio de cuerpos rígidos en 2D y 3D",
+        points: ["En 3D se agregan ecuaciones de momento en cada eje: 6 ecuaciones de equilibrio en total (3 fuerza + 3 momento)."],
+        formulas: ["ΣFx=0, ΣFy=0, ΣFz=0, ΣMx=0, ΣMy=0, ΣMz=0"],
+      },
+      {
+        title: "Análisis de estructuras: armaduras y marcos",
+        points: ["Método de nodos: equilibrio en cada nudo. Método de secciones: corta la armadura y analiza el equilibrio de una parte."],
+      },
+      {
+        title: "Centro de masa y momentos de inercia",
+        points: ["El momento de inercia mide la resistencia a la rotación; depende de cómo se distribuye la masa respecto al eje."],
+        formulas: ["I = ∫r² dm"],
+      },
+      {
+        title: "Dinámica de partículas y cuerpos rígidos",
+        points: ["Para rotación: el equivalente de F=ma es el torque neto igual al momento de inercia por la aceleración angular."],
+        formulas: ["ΣΤ = I·α"],
+      },
+      {
+        title: "Fricción en sistemas mecánicos",
+        points: ["El ángulo de fricción y el coeficiente μ determinan si un cuerpo desliza o permanece en reposo bajo una fuerza dada."],
+      },
     ],
     tips: [
       "Es la continuación directa de Física (sem 2): repasa diagramas de cuerpo libre.",
@@ -779,10 +1009,10 @@ const SUBJECTS = [
     id: "plantas-procesos", name: "Plantas y Procesos Industriales", year: 3, semester: 5, area: "gest",
     summary: "Diseño y organización de plantas industriales y flujo de procesos.",
     topics: [
-      "Layout de planta y distribución de procesos",
-      "Diagramas de flujo de proceso (PFD)",
-      "Capacidad de planta y balance de líneas",
-      "Eficiencia y productividad industrial",
+      { title: "Layout de planta y distribución de procesos", points: ["Un buen layout minimiza el recorrido de materiales y cruces de flujo entre estaciones de trabajo."] },
+      { title: "Diagramas de flujo de proceso (PFD)", points: ["El PFD representa equipos principales y su secuencia, sin todo el detalle de instrumentación (eso lo cubre el P&ID después)."] },
+      { title: "Capacidad de planta y balance de líneas", points: ["El cuello de botella es la estación más lenta de la línea; define la capacidad máxima de todo el sistema."] },
+      { title: "Eficiencia y productividad industrial", points: ["La eficiencia global de equipo (OEE) combina disponibilidad, rendimiento y calidad en un solo indicador."] },
     ],
     tips: ["Practica leer e interpretar diagramas PFD/P&ID, se repiten en Instrumentación y Control."],
   },
@@ -790,11 +1020,11 @@ const SUBJECTS = [
     id: "automatizacion", name: "Automatización Industrial", year: 3, semester: 5, area: "elec",
     summary: "Sistemas automáticos de control aplicados a procesos industriales.",
     topics: [
-      "Lógica de control con PLC",
-      "Sensores y actuadores industriales",
-      "Diagramas de escalera (ladder)",
-      "Sistemas de control secuencial",
-      "Introducción a SCADA",
+      { title: "Lógica de control con PLC", points: ["El PLC ejecuta un ciclo de barrido continuo: lee entradas, ejecuta el programa, actualiza salidas."] },
+      { title: "Sensores y actuadores industriales", points: ["Sensores típicos: inductivos, capacitivos, fotoeléctricos; actuadores: cilindros, motores, electroválvulas."] },
+      { title: "Diagramas de escalera (ladder)", points: ["Cada 'peldaño' representa una condición lógica que activa una salida; se lee de izquierda a derecha, de arriba a abajo."] },
+      { title: "Sistemas de control secuencial", points: ["Una secuencia encadena pasos donde cada uno depende de que el anterior haya finalizado (confirmado por sensores)."] },
+      { title: "Introducción a SCADA", points: ["SCADA supervisa y controla procesos a distancia, mostrando datos en tiempo real desde los PLC de campo."] },
     ],
     tips: ["Practica programación ladder en simulador, es la habilidad más evaluada en pruebas prácticas."],
   },
@@ -802,10 +1032,17 @@ const SUBJECTS = [
     id: "soldadura-calidad", name: "Soldadura y Control de Calidad", year: 3, semester: 5, area: "mater",
     summary: "Procesos de soldadura industrial y métodos de control de calidad asociados.",
     topics: [
-      "Procesos de soldadura: SMAW, MIG/MAG, TIG",
-      "Defectos de soldadura y su prevención",
-      "Ensayos no destructivos (END): tintas penetrantes, ultrasonido, radiografía",
-      "Normas de calidad en soldadura (AWS, ASME)",
+      {
+        title: "Procesos de soldadura: SMAW, MIG/MAG, TIG",
+        points: [
+          "SMAW (electrodo revestido): versátil, usado en terreno, requiere más habilidad manual.",
+          "MIG/MAG: alambre continuo, mayor productividad, bueno para producción en serie.",
+          "TIG: mayor calidad y control, usado en materiales finos o aceros inoxidables.",
+        ],
+      },
+      { title: "Defectos de soldadura y su prevención", points: ["Porosidad, falta de fusión, socavado y grietas son los defectos más comunes; cada uno tiene causas específicas de parámetro o técnica."] },
+      { title: "Ensayos no destructivos (END): tintas penetrantes, ultrasonido, radiografía", points: ["Tintas penetrantes detectan defectos superficiales; ultrasonido y radiografía detectan defectos internos."] },
+      { title: "Normas de calidad en soldadura (AWS, ASME)", points: ["Estas normas definen criterios de aceptación/rechazo y calificación de soldadores."] },
     ],
     tips: ["Asocia cada defecto de soldadura con su causa raíz: es típico en preguntas de diagnóstico."],
   },
@@ -813,10 +1050,10 @@ const SUBJECTS = [
     id: "estrategias-mant", name: "Estrategias del Mantenimiento", year: 3, semester: 5, area: "gest",
     summary: "Metodologías avanzadas de gestión de mantenimiento (RCM, TPM, etc.).",
     topics: [
-      "Mantenimiento Centrado en Confiabilidad (RCM)",
-      "Mantenimiento Productivo Total (TPM)",
-      "Análisis de fallas (FMEA, causa raíz)",
-      "Mantenimiento predictivo: vibraciones, termografía",
+      { title: "Mantenimiento Centrado en Confiabilidad (RCM)", points: ["RCM pregunta: ¿cómo puede fallar el equipo, qué consecuencia tiene cada falla y qué tarea de mantenimiento la previene mejor?"] },
+      { title: "Mantenimiento Productivo Total (TPM)", points: ["TPM involucra al operador en mantenimiento básico diario (limpieza, lubricación, inspección) para detectar fallas tempranamente."] },
+      { title: "Análisis de fallas (FMEA, causa raíz)", points: ["FMEA evalúa cada modo de falla por severidad, ocurrencia y detección para priorizar acciones preventivas."] },
+      { title: "Mantenimiento predictivo: vibraciones, termografía", points: ["El análisis de vibraciones detecta desalineación, desbalance o desgaste de rodamientos antes de la falla catastrófica."] },
     ],
     tips: ["Compara RCM vs TPM con un cuadro propio: es pregunta clásica de evaluación conceptual."],
   },
@@ -826,10 +1063,25 @@ const SUBJECTS = [
     id: "decisiones-econ", name: "Decisiones Económicas", year: 3, semester: 6, area: "gest",
     summary: "Evaluación económica de proyectos e ingeniería económica.",
     topics: [
-      "Valor del dinero en el tiempo",
-      "VAN y TIR",
-      "Análisis costo-beneficio de proyectos de ingeniería",
-      "Depreciación y reemplazo de activos",
+      {
+        title: "Valor del dinero en el tiempo",
+        points: ["Un peso hoy vale más que un peso mañana por su capacidad de generar interés/rentabilidad."],
+        formulas: ["Valor futuro: VF = VP·(1+i)ⁿ"],
+      },
+      {
+        title: "VAN y TIR",
+        points: [
+          "VAN positivo indica que el proyecto genera valor por sobre la tasa de descuento exigida.",
+          "TIR es la tasa de descuento que hace VAN = 0; si TIR > tasa exigida, el proyecto conviene.",
+        ],
+        formulas: ["VAN = Σ [Ft / (1+i)^t] − Inversión inicial"],
+      },
+      { title: "Análisis costo-beneficio de proyectos de ingeniería", points: ["Compara beneficios totales versus costos totales, considerando el valor del dinero en el tiempo."] },
+      {
+        title: "Depreciación y reemplazo de activos",
+        points: ["La depreciación lineal reparte el costo de un activo en partes iguales durante su vida útil."],
+        formulas: ["Depreciación lineal = (Costo inicial − Valor residual) / Vida útil"],
+      },
     ],
     tips: ["Practica VAN/TIR con calculadora financiera o Excel: son cálculo seguro en examen."],
   },
@@ -837,12 +1089,34 @@ const SUBJECTS = [
     id: "resistencia-materiales", name: "Resistencia de Materiales", year: 3, semester: 6, area: "mecan",
     summary: "Análisis de esfuerzos, deformaciones y diseño a falla de elementos mecánicos.",
     topics: [
-      "Esfuerzo y deformación: tracción, compresión, corte",
-      "Diagramas de esfuerzo cortante y momento flector",
-      "Flexión y torsión de vigas y ejes",
-      "Esfuerzos combinados y círculo de Mohr",
-      "Pandeo de columnas",
-      "Criterios de falla (Von Mises, Tresca)",
+      {
+        title: "Esfuerzo y deformación: tracción, compresión, corte",
+        points: ["El esfuerzo es fuerza por unidad de área; la deformación unitaria es el alargamiento relativo respecto a la longitud original."],
+        formulas: ["σ = F/A", "ε = ΔL/L₀", "Ley de Hooke: σ = E·ε"],
+      },
+      {
+        title: "Diagramas de esfuerzo cortante y momento flector",
+        points: ["El diagrama de momento es la integral del diagrama de corte; los puntos de corte=0 suelen ser máximos/mínimos de momento."],
+      },
+      {
+        title: "Flexión y torsión de vigas y ejes",
+        points: ["El esfuerzo de flexión es máximo en la fibra más alejada del eje neutro."],
+        formulas: ["Flexión: σ = M·c / I", "Torsión: τ = T·r / J"],
+      },
+      {
+        title: "Esfuerzos combinados y círculo de Mohr",
+        points: ["El círculo de Mohr permite encontrar esfuerzos principales y el esfuerzo cortante máximo gráficamente."],
+        formulas: ["σ_prom = (σx+σy)/2", "R = √[((σx−σy)/2)² + τxy²]"],
+      },
+      {
+        title: "Pandeo de columnas",
+        points: ["Columnas esbeltas fallan por pandeo antes de alcanzar el esfuerzo de fluencia del material."],
+        formulas: ["Carga crítica de Euler: Pcr = π²EI / (KL)²"],
+      },
+      {
+        title: "Criterios de falla (Von Mises, Tresca)",
+        points: ["Von Mises predice fluencia bajo esfuerzos combinados con mayor precisión que Tresca para materiales dúctiles."],
+      },
     ],
     tips: [
       "Es uno de los ramos más pesados: practica diagramas V-M todos los días, no solo antes de la prueba.",
@@ -853,11 +1127,19 @@ const SUBJECTS = [
     id: "termodinamica", name: "Termodinámica", year: 3, semester: 6, area: "fisica",
     summary: "Leyes de la termodinámica y ciclos de potencia aplicados a máquinas térmicas.",
     topics: [
-      "Primera ley: balance de energía en sistemas cerrados y abiertos",
-      "Segunda ley: entropía y eficiencia",
-      "Propiedades de sustancias puras y tablas de vapor",
-      "Ciclos de potencia: Rankine, Otto, Diésel, Brayton",
-      "Ciclos de refrigeración",
+      {
+        title: "Primera ley: balance de energía en sistemas cerrados y abiertos",
+        points: ["La primera ley es conservación de energía: el calor neto agregado menos el trabajo neto entregado es el cambio de energía interna."],
+        formulas: ["ΔU = Q − W"],
+      },
+      {
+        title: "Segunda ley: entropía y eficiencia",
+        points: ["Ninguna máquina térmica puede ser 100% eficiente; siempre hay calor rechazado a un foco frío."],
+        formulas: ["η = W_neto / Q_entrada = 1 − Qsalida/Qentrada"],
+      },
+      { title: "Propiedades de sustancias puras y tablas de vapor", points: ["Las tablas de vapor entregan propiedades (h, s, v) en función de presión/temperatura, esenciales para resolver ciclos."] },
+      { title: "Ciclos de potencia: Rankine, Otto, Diésel, Brayton", points: ["Rankine usa vapor de agua (plantas térmicas); Otto/Diésel son de combustión interna; Brayton es el ciclo de turbinas a gas."] },
+      { title: "Ciclos de refrigeración", points: ["El ciclo de refrigeración por compresión de vapor es el inverso de un ciclo de potencia: consume trabajo para mover calor de frío a caliente."] },
     ],
     tips: [
       "Aprende a usar tablas de vapor con fluidez: gran parte del examen depende de eso.",
@@ -868,11 +1150,11 @@ const SUBJECTS = [
     id: "procesos-conformado", name: "Procesos de Conformado y Fabricación", year: 3, semester: 6, area: "mater",
     summary: "Procesos de manufactura: conformado, mecanizado y fabricación de piezas.",
     topics: [
-      "Procesos de conformado: laminado, forjado, extrusión",
-      "Mecanizado: torneado, fresado, taladrado",
-      "Fundición y moldeo",
-      "Parámetros de corte y selección de herramientas",
-      "Manufactura aditiva (introducción)",
+      { title: "Procesos de conformado: laminado, forjado, extrusión", points: ["Todos deforman el material plásticamente sin remover viruta, generalmente mejorando sus propiedades mecánicas por afinamiento del grano."] },
+      { title: "Mecanizado: torneado, fresado, taladrado", points: ["Torneado: la pieza gira y la herramienta es fija. Fresado: la herramienta gira y se desplaza sobre la pieza fija."] },
+      { title: "Fundición y moldeo", points: ["La fundición vierte metal líquido en un molde; permite geometrías complejas difíciles de mecanizar."] },
+      { title: "Parámetros de corte y selección de herramientas", points: ["Velocidad de corte, avance y profundidad de pasada determinan acabado superficial, vida de herramienta y tiempo de mecanizado."] },
+      { title: "Manufactura aditiva (introducción)", points: ["La impresión 3D construye la pieza capa por capa, ideal para prototipos o geometrías imposibles de mecanizar."] },
     ],
     tips: ["Relaciona cada proceso con el tipo de material y geometría de pieza más adecuada para él."],
   },
@@ -880,11 +1162,19 @@ const SUBJECTS = [
     id: "cinematica-maquinas", name: "Cinemática de Máquinas", year: 3, semester: 6, area: "mecan",
     summary: "Análisis de movimiento de mecanismos: levas, engranajes y eslabonamientos.",
     topics: [
-      "Análisis de mecanismos de barras (4 barras)",
-      "Engranajes: relación de transmisión, tipos",
-      "Levas y seguidores",
-      "Análisis de velocidad y aceleración en mecanismos",
-      "Trenes de engranajes",
+      { title: "Análisis de mecanismos de barras (4 barras)", points: ["El mecanismo de 4 barras es la base de muchos mecanismos más complejos; su movilidad se calcula con el criterio de Grashof."] },
+      {
+        title: "Engranajes: relación de transmisión, tipos",
+        points: ["La relación de transmisión compara velocidades angulares (o número de dientes) entre engranaje motriz y conducido."],
+        formulas: ["i = N1/N2 = ω2/ω1"],
+      },
+      { title: "Levas y seguidores", points: ["El perfil de la leva define la ley de movimiento (posición, velocidad, aceleración) del seguidor."] },
+      { title: "Análisis de velocidad y aceleración en mecanismos", points: ["El método de centros instantáneos de rotación simplifica el análisis de velocidades en mecanismos planos."] },
+      {
+        title: "Trenes de engranajes",
+        points: ["En un tren de engranajes, la relación total es el producto de las relaciones individuales de cada par."],
+        formulas: ["i_total = i1 · i2 · i3 · ..."],
+      },
     ],
     tips: ["Practica el método gráfico de velocidades/aceleraciones, suele pedirse paso a paso en pruebas."],
   },
@@ -892,10 +1182,10 @@ const SUBJECTS = [
     id: "control-riesgo", name: "Control de Riesgo Operacional", year: 3, semester: 6, area: "trans",
     summary: "Gestión de prevención de riesgos y seguridad laboral en entornos industriales.",
     topics: [
-      "Identificación de peligros y evaluación de riesgos (IPER)",
-      "Normativa de seguridad laboral chilena",
-      "Equipos de protección personal (EPP)",
-      "Investigación de accidentes",
+      { title: "Identificación de peligros y evaluación de riesgos (IPER)", points: ["IPER evalúa cada peligro combinando probabilidad y consecuencia para priorizar controles."] },
+      { title: "Normativa de seguridad laboral chilena", points: ["La Ley 16.744 regula accidentes del trabajo y enfermedades profesionales en Chile."] },
+      { title: "Equipos de protección personal (EPP)", points: ["El EPP es la última línea de defensa: primero deben aplicarse controles de ingeniería y administrativos."] },
+      { title: "Investigación de accidentes", points: ["El análisis de causa raíz busca la causa real detrás del incidente, no solo el síntoma inmediato."] },
     ],
     tips: ["Memoriza la matriz IPER: se usa como herramienta transversal en taller y prácticas."],
   },
@@ -905,12 +1195,16 @@ const SUBJECTS = [
     id: "disenos-mecanicos", name: "Diseños Mecánicos", year: 4, semester: 7, area: "mecan",
     summary: "Diseño de elementos de máquinas: ejes, uniones, engranajes, rodamientos.",
     topics: [
-      "Diseño de ejes a fatiga y resistencia",
-      "Uniones: pernos, soldadura, remaches",
-      "Selección de rodamientos",
-      "Diseño de engranajes y transmisiones",
-      "Resortes y elementos elásticos",
-      "Factores de seguridad y normas de diseño",
+      {
+        title: "Diseño de ejes a fatiga y resistencia",
+        points: ["La falla por fatiga ocurre a esfuerzos muy por debajo del esfuerzo de fluencia, debido a cargas cíclicas repetidas."],
+        formulas: ["Factor de seguridad: FS = Sy / σ_trabajo"],
+      },
+      { title: "Uniones: pernos, soldadura, remaches", points: ["Los pernos se diseñan considerando precarga, fatiga y el patrón de torque de apriete."] },
+      { title: "Selección de rodamientos", points: ["La selección se basa en carga, velocidad, vida útil deseada (L10) y condiciones ambientales."] },
+      { title: "Diseño de engranajes y transmisiones", points: ["El diseño verifica resistencia a flexión del diente y resistencia superficial al contacto (picado)."] },
+      { title: "Resortes y elementos elásticos", points: ["La constante de un resorte helicoidal depende del diámetro de alambre, diámetro medio y número de espiras."], formulas: ["F = k·x"] },
+      { title: "Factores de seguridad y normas de diseño", points: ["El factor de seguridad elegido depende de la incertidumbre en cargas, materiales y consecuencias de una falla."] },
     ],
     tips: [
       "Integra todo lo de Resistencia de Materiales y Metrología: es el ramo de síntesis del área mecánica.",
@@ -921,11 +1215,23 @@ const SUBJECTS = [
     id: "transferencia-calor", name: "Transferencia de Calor", year: 4, semester: 7, area: "fisica",
     summary: "Mecanismos de transferencia de calor: conducción, convección y radiación.",
     topics: [
-      "Conducción: Ley de Fourier, resistencia térmica",
-      "Convección natural y forzada",
-      "Radiación térmica",
-      "Intercambiadores de calor: tipos y diseño (LMTD, NTU)",
-      "Aletas y superficies extendidas",
+      {
+        title: "Conducción: Ley de Fourier, resistencia térmica",
+        points: ["La resistencia térmica permite tratar problemas de conducción como un circuito eléctrico equivalente."],
+        formulas: ["q = −k·A·(dT/dx)", "R_cond = L / (k·A)"],
+      },
+      {
+        title: "Convección natural y forzada",
+        points: ["Forzada: el fluido se mueve por un agente externo (bomba/ventilador). Natural: el movimiento lo genera la diferencia de densidad por temperatura."],
+        formulas: ["q = h·A·(Ts − T∞)"],
+      },
+      {
+        title: "Radiación térmica",
+        points: ["Todo cuerpo emite radiación según su temperatura absoluta a la cuarta potencia (ley de Stefan-Boltzmann)."],
+        formulas: ["q = ε·σ·A·T⁴"],
+      },
+      { title: "Intercambiadores de calor: tipos y diseño (LMTD, NTU)", points: ["Flujo paralelo vs contracorriente: contracorriente logra mayor efectividad de intercambio para la misma área."] },
+      { title: "Aletas y superficies extendidas", points: ["Las aletas aumentan el área de transferencia para mejorar la disipación de calor por convección."] },
     ],
     tips: ["Domina el concepto de resistencia térmica equivalente: simplifica casi todos los problemas."],
   },
@@ -933,10 +1239,18 @@ const SUBJECTS = [
     id: "instrumentacion-control", name: "Instrumentación y Control Industrial", year: 4, semester: 7, area: "elec",
     summary: "Instrumentos de medición de procesos y lazos de control automático.",
     topics: [
-      "Sensores de presión, temperatura, flujo y nivel",
-      "Lazos de control: P, PI, PID",
-      "Diagramas P&ID",
-      "Sintonización básica de controladores",
+      { title: "Sensores de presión, temperatura, flujo y nivel", points: ["Cada variable de proceso tiene tecnologías específicas: termopares/RTD para temperatura, transmisores piezoeléctricos para presión, etc."] },
+      {
+        title: "Lazos de control: P, PI, PID",
+        points: [
+          "Control P: respuesta proporcional al error, pero deja error residual (offset).",
+          "Control PI: elimina el offset gracias al término integral.",
+          "Control PID: agrega el término derivativo para anticipar y suavizar la respuesta.",
+        ],
+        formulas: ["Salida PID: u(t) = Kp·e(t) + Ki∫e(t)dt + Kd·de/dt"],
+      },
+      { title: "Diagramas P&ID", points: ["El P&ID detalla instrumentación, líneas de proceso y lazos de control, a diferencia del PFD que es más general."] },
+      { title: "Sintonización básica de controladores", points: ["Sintonizar significa ajustar Kp, Ki, Kd para lograr una respuesta rápida, estable y sin oscilaciones excesivas."] },
     ],
     tips: ["Practica leer P&ID de principio a fin, identificando lazo de control y variable controlada."],
   },
@@ -944,10 +1258,10 @@ const SUBJECTS = [
     id: "software-ingenieria", name: "Software de Ingeniería", year: 4, semester: 7, area: "trans",
     summary: "Herramientas de simulación y análisis computacional aplicadas a mecánica (CAE/FEA).",
     topics: [
-      "Modelado CAD avanzado",
-      "Simulación por elementos finitos (FEA): mallado, condiciones de borde",
-      "Análisis estático y de fatiga asistido por software",
-      "Interpretación de resultados de simulación",
+      { title: "Modelado CAD avanzado", points: ["Un buen modelo paramétrico anticipa qué dimensiones cambiarán en el futuro y las deja como variables controlables."] },
+      { title: "Simulación por elementos finitos (FEA): mallado, condiciones de borde", points: ["Una malla más fina da mayor precisión pero mayor costo computacional; refina solo en zonas críticas (concentradores de esfuerzo)."] },
+      { title: "Análisis estático y de fatiga asistido por software", points: ["El software calcula esfuerzos y factor de seguridad, pero la correcta definición de cargas y restricciones es responsabilidad del ingeniero."] },
+      { title: "Interpretación de resultados de simulación", points: ["Un resultado de simulación sin verificación manual aproximada puede esconder errores de configuración (cargas, apoyos, unidades)."] },
     ],
     tips: ["Valida siempre tus resultados de simulación con cálculo manual aproximado de Resistencia de Materiales."],
   },
@@ -955,11 +1269,15 @@ const SUBJECTS = [
     id: "turbomaquinas", name: "Turbomáquinas", year: 4, semester: 7, area: "mecan",
     summary: "Principios y diseño de turbinas, bombas y compresores.",
     topics: [
-      "Clasificación de turbomáquinas (axiales, radiales)",
-      "Triángulos de velocidad",
-      "Bombas centrífugas: curvas características, cavitación",
-      "Turbinas hidráulicas, de vapor y de gas",
-      "Compresores centrífugos y axiales",
+      { title: "Clasificación de turbomáquinas (axiales, radiales)", points: ["Axiales: el flujo es paralelo al eje. Radiales (centrífugas): el flujo cambia de dirección axial a radial."] },
+      { title: "Triángulos de velocidad", points: ["El triángulo de velocidad combina velocidad absoluta, relativa y tangencial del rotor; es la base del diseño de álabes."] },
+      {
+        title: "Bombas centrífugas: curvas características, cavitación",
+        points: ["La cavitación ocurre cuando la presión local cae bajo la presión de vapor del fluido, dañando el rodete."],
+        formulas: ["NPSH disponible > NPSH requerido (condición para evitar cavitación)"],
+      },
+      { title: "Turbinas hidráulicas, de vapor y de gas", points: ["Pelton (acción), Francis y Kaplan (reacción) se seleccionan según el salto y caudal disponible del recurso hídrico."] },
+      { title: "Compresores centrífugos y axiales", points: ["Los compresores centrífugos manejan menor caudal a mayor relación de presión por etapa que los axiales."] },
     ],
     tips: ["Aprende a leer curvas características de bombas: pregunta recurrente en evaluaciones."],
   },
@@ -969,10 +1287,10 @@ const SUBJECTS = [
     id: "proyecto-especialidad", name: "Proyecto de Especialidad", year: 4, semester: 8, area: "trans",
     summary: "Proyecto integrador aplicando conocimientos de toda la carrera a un caso real.",
     topics: [
-      "Definición de problema y alcance del proyecto",
-      "Aplicación integrada de diseño, materiales y procesos",
-      "Evaluación técnico-económica del proyecto",
-      "Defensa y comunicación de resultados",
+      { title: "Definición de problema y alcance del proyecto", points: ["Un alcance bien definido evita que el proyecto crezca sin control ('scope creep') antes de la entrega final."] },
+      { title: "Aplicación integrada de diseño, materiales y procesos", points: ["El proyecto debe demostrar dominio transversal: cálculo de resistencia, selección de material y proceso de fabricación coherentes entre sí."] },
+      { title: "Evaluación técnico-económica del proyecto", points: ["Toda propuesta técnica debe justificarse también económicamente (costo, retorno, viabilidad)."] },
+      { title: "Defensa y comunicación de resultados", points: ["La defensa evalúa tanto el resultado técnico como la capacidad de explicarlo y defenderlo ante preguntas."] },
     ],
     tips: ["Elige un tema que te apasione y conecte con tu futuro laboral: lo presentarás varias veces."],
   },
@@ -980,10 +1298,10 @@ const SUBJECTS = [
     id: "liderazgo-situacional", name: "Técnicas de Liderazgo Situacional", year: 4, semester: 8, area: "trans",
     summary: "Habilidades blandas de liderazgo y gestión de equipos de trabajo.",
     topics: [
-      "Modelo de liderazgo situacional (Hersey-Blanchard)",
-      "Comunicación efectiva y manejo de conflictos",
-      "Toma de decisiones en equipo",
-      "Gestión de equipos técnicos",
+      { title: "Modelo de liderazgo situacional (Hersey-Blanchard)", points: ["El estilo de liderazgo (dirigir, persuadir, participar, delegar) debe adaptarse al nivel de madurez/competencia del colaborador."] },
+      { title: "Comunicación efectiva y manejo de conflictos", points: ["La escucha activa y la retroalimentación específica reducen malentendidos y conflictos en equipos técnicos."] },
+      { title: "Toma de decisiones en equipo", points: ["El consenso no siempre es la mejor vía; a veces decisiones técnicas requieren autoridad clara y rápida."] },
+      { title: "Gestión de equipos técnicos", points: ["Gestionar técnicos requiere balancear autonomía (suelen ser expertos) con alineación a objetivos del proyecto."] },
     ],
     tips: ["Relaciona los estilos de liderazgo con casos reales de tu práctica o proyecto de especialidad."],
   },
@@ -991,10 +1309,10 @@ const SUBJECTS = [
     id: "topicos-ingenieria", name: "Tópicos de Ingeniería", year: 4, semester: 8, area: "trans",
     summary: "Temas emergentes y de actualización en ingeniería mecánica.",
     topics: [
-      "Tendencias en manufactura 4.0 e Industria 4.0",
-      "Sostenibilidad y eficiencia energética",
-      "Nuevos materiales y tecnologías",
-      "Casos de estudio actuales del rubro",
+      { title: "Tendencias en manufactura 4.0 e Industria 4.0", points: ["IoT industrial, gemelos digitales y mantenimiento predictivo conectado son los pilares de la Industria 4.0."] },
+      { title: "Sostenibilidad y eficiencia energética", points: ["La eficiencia energética en procesos industriales es hoy un criterio de diseño tan relevante como el costo o la resistencia."] },
+      { title: "Nuevos materiales y tecnologías", points: ["Materiales compuestos y aleaciones avanzadas amplían las opciones de diseño más allá de los aceros tradicionales."] },
+      { title: "Casos de estudio actuales del rubro", points: ["Analizar casos reales de la industria regional (minería, energía, pesca) conecta la teoría con el contexto laboral de Magallanes."] },
     ],
     tips: ["Mantente al día con noticias del sector industrial chileno y mundial durante el semestre."],
   },
