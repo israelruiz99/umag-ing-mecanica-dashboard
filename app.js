@@ -10,6 +10,12 @@ function saveGrades(){
 function subjectAvg(id){
   const list = grades[id] || [];
   if(!list.length) return null;
+  const totalWeight = list.reduce((a,b)=> a + (Number(b.weight) || 0), 0);
+  if(totalWeight > 0){
+    const weightedSum = list.reduce((a,b)=> a + b.score * (Number(b.weight) || 0), 0);
+    return weightedSum / totalWeight;
+  }
+  // sin ponderaciones definidas: promedio simple (compatibilidad)
   const sum = list.reduce((a,b)=>a+b.score,0);
   return sum / list.length;
 }
@@ -227,6 +233,7 @@ function renderGradeList(){
       <li class="grade-row">
         <span class="gr-name">${g.name}</span>
         <span class="gr-right">
+          ${g.weight ? `<span class="gr-weight">${g.weight}%</span>` : ""}
           <span class="gr-score">${g.score.toFixed(1)}</span>
           <button class="gr-del" data-i="${i}">✕</button>
         </span>
@@ -236,6 +243,16 @@ function renderGradeList(){
 
   const avg = subjectAvg(activeSubjectId);
   avgBox.textContent = avg !== null ? avg.toFixed(1) : "—";
+
+  const weightTotalEl = document.getElementById("weightTotal");
+  const totalWeight = list.reduce((a,b)=> a + (Number(b.weight) || 0), 0);
+  if(!list.length){
+    weightTotalEl.textContent = "";
+    weightTotalEl.className = "weight-total";
+  } else {
+    weightTotalEl.textContent = `Ponderación registrada: ${totalWeight}%${totalWeight !== 100 ? " (falta completar 100%)" : ""}`;
+    weightTotalEl.className = "weight-total " + (totalWeight === 100 ? "ok" : "warn");
+  }
 
   ul.querySelectorAll(".gr-del").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -254,17 +271,20 @@ document.getElementById("evalAdd").addEventListener("click", () => {
   if(!activeSubjectId) return;
   const nameInput = document.getElementById("evalName");
   const scoreInput = document.getElementById("evalScore");
+  const weightInput = document.getElementById("evalWeight");
   const name = nameInput.value.trim();
   const score = parseFloat(scoreInput.value);
+  const weight = parseFloat(weightInput.value) || 0;
 
   if(!name || isNaN(score)) return;
 
   if(!grades[activeSubjectId]) grades[activeSubjectId] = [];
-  grades[activeSubjectId].push({ name, score });
+  grades[activeSubjectId].push({ name, score, weight });
   saveGrades();
 
   nameInput.value = "";
   scoreInput.value = "";
+  weightInput.value = "";
   nameInput.focus();
 
   renderGradeList();

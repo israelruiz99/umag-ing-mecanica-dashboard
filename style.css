@@ -233,7 +233,8 @@ body{
   padding: 9px 10px; font-size:12.5px; font-family: var(--font);
 }
 #evalName{ flex:1.6; }
-#evalScore{ flex:0.8; min-width:0; }
+#evalScore{ flex:0.7; min-width:0; }
+#evalWeight{ flex:0.7; min-width:0; }
 .grade-add button{
   all:unset; cursor:pointer; background: var(--accent); color:#0E0F14; font-weight:700;
   font-size:12.5px; padding: 9px 14px; border-radius:10px;
@@ -242,10 +243,14 @@ body{
 
 .grade-avg{
   display:flex; justify-content:space-between; align-items:center;
-  background: var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:14px;
+  background: var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:8px;
 }
 .grade-avg span{ font-size:12.5px; color:var(--muted); }
 .grade-avg strong{ font-family: var(--mono); font-size:18px; }
+
+.weight-total{ font-size:11.5px; color: var(--muted); margin: 0 2px 14px; text-align:right; }
+.weight-total.warn{ color: #FF9F5A; }
+.weight-total.ok{ color: #5AD1A6; }
 
 .grade-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
 .grade-row{
@@ -254,6 +259,10 @@ body{
 }
 .grade-row .gr-name{ font-size:13px; }
 .grade-row .gr-right{ display:flex; align-items:center; gap:10px; }
+.grade-row .gr-weight{
+  font-family: var(--mono); font-size:11.5px; color: var(--accent);
+  background: var(--accent-soft); padding: 3px 8px; border-radius: 999px;
+}
 .grade-row .gr-score{ font-family:var(--mono); font-weight:700; font-size:13.5px; }
 .grade-row .gr-del{ all:unset; cursor:pointer; color: var(--muted); font-size:13px; }
 .grade-row .gr-del:hover{ color:#FF6B6B; }

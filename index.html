@@ -120,12 +120,14 @@
       <div class="grade-add">
         <input type="text" id="evalName" placeholder="Nombre evaluación (ej: Prueba 1, Control 2)">
         <input type="number" id="evalScore" placeholder="Puntaje" step="0.1" min="0" max="100">
+        <input type="number" id="evalWeight" placeholder="% ponderación" step="1" min="0" max="100">
         <button id="evalAdd">Agregar</button>
       </div>
       <div class="grade-avg" id="subjectAvgBox">
-        <span>Promedio del ramo</span>
+        <span>Promedio ponderado del ramo</span>
         <strong id="subjectAvg">—</strong>
       </div>
+      <div class="weight-total" id="weightTotal"></div>
       <ul class="grade-list" id="gradeList"></ul>
     </div>
   </div>
