@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMAG · Ingeniería Mecánica — Dashboard de Estudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">UM</div>
+      <div class="brand-text">
+        <span class="brand-title">Ing. Mecánica</span>
+        <span class="brand-sub">Universidad de Magallanes</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <span class="nav-label">Vista</span>
+      <button class="nav-item active" data-view="overview">
+        <span class="nav-ico">◧</span> Resumen
+      </button>
+      <button class="nav-item" data-view="grades">
+        <span class="nav-ico">◔</span> Mis Notas
+      </button>
+    </nav>
+
+    <nav class="nav years-nav" id="yearsNav">
+      <span class="nav-label">Años</span>
+      <!-- generado por JS -->
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="progress-mini">
+        <div class="progress-mini-top">
+          <span>Promedio general</span>
+          <strong id="globalAvg">—</strong>
+        </div>
+        <div class="bar"><div class="bar-fill" id="globalAvgBar"></div></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <header class="topbar">
+      <div class="search">
+        <span class="search-ico">⌕</span>
+        <input id="searchInput" type="text" placeholder="Buscar ramo… ej: Resistencia, Termodinámica">
+      </div>
+      <div class="topbar-right">
+        <div class="chip" id="semesterChip">8 semestres · 44 ramos</div>
+      </div>
+    </header>
+
+    <!-- OVERVIEW VIEW -->
+    <section id="view-overview" class="view active">
+      <div class="view-head">
+        <div>
+          <h1>Malla curricular</h1>
+          <p class="muted">Ingeniería en Mecánica — Facultad de Ingeniería, UMAG</p>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+
+      <div id="semestersWrap"></div>
+    </section>
+
+    <!-- GRADES VIEW -->
+    <section id="view-grades" class="view">
+      <div class="view-head">
+        <div>
+          <h1>Mis Notas</h1>
+          <p class="muted">Registra tus puntajes por evaluación en cada ramo. Se guardan en este navegador.</p>
+        </div>
+      </div>
+      <div class="grades-grid" id="gradesGrid"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- DETAIL PANEL (slide-over) -->
+<div class="overlay" id="overlay"></div>
+<aside class="panel" id="panel">
+  <div class="panel-head">
+    <div>
+      <div class="panel-tag" id="panelArea"></div>
+      <h2 id="panelTitle"></h2>
+      <p class="muted" id="panelMeta"></p>
+    </div>
+    <button class="panel-close" id="panelClose">✕</button>
+  </div>
+
+  <div class="panel-tabs">
+    <button class="tab active" data-tab="study">Contenido de estudio</button>
+    <button class="tab" data-tab="grades">Puntajes</button>
+  </div>
+
+  <div class="panel-body">
+    <div class="tab-content active" id="tab-study">
+      <p class="panel-summary" id="panelSummary"></p>
+
+      <h4>Temas clave</h4>
+      <ul class="topics-list" id="panelTopics"></ul>
+
+      <h4>Tips de estudio</h4>
+      <ul class="tips-list" id="panelTips"></ul>
+    </div>
+
+    <div class="tab-content" id="tab-grades">
+      <div class="grade-add">
+        <input type="text" id="evalName" placeholder="Nombre evaluación (ej: Prueba 1, Control 2)">
+        <input type="number" id="evalScore" placeholder="Puntaje" step="0.1" min="0" max="100">
+        <button id="evalAdd">Agregar</button>
+      </div>
+      <div class="grade-avg" id="subjectAvgBox">
+        <span>Promedio del ramo</span>
+        <strong id="subjectAvg">—</strong>
+      </div>
+      <ul class="grade-list" id="gradeList"></ul>
+    </div>
+  </div>
+</aside>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
